@@ -1,0 +1,56 @@
+.bgImg {
+    background-image: url('https://phunugioi.com/wp-content/uploads/2020/08/tai-background-xanh-duong.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    padding-top: 1px;
+    padding-bottom: 50px;
+    margin: 50px 0;
+}
+.topReviewsTitle {
+    margin-top: 60px;
+    margin-bottom: 35px;
+}
+.topReviewsTitle h2 {
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+}
+.containerListTopReviews {
+    overflow: hidden;
+    margin: 0 -15px;
+    position: relative;
+}
+.listTopReviews {
+    display: flex;
+    justify-content: center;
+    transition: transform 0.5s linear;
+    margin: 0 auto;
+}
+.prevTopReviews {
+    left: 5px;
+    top: 40%;
+}
+.nextTopReviews {
+    right: 5px;
+    top: 40%;
+}
+.topReviewsDots {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 21px;
+}
+.topReviewsDots span {
+    margin-right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+}
+.topReviewsDots span.active {
+    background-color: #000;
+}

@@ -1,0 +1,63 @@
+.wrapper {
+    width: 100%;
+    padding: 50px 10px;
+    margin-top: 36px;
+}
+.logo img {
+    width: 100%;
+    height: 35px;
+    object-fit: contain;
+}
+.info {
+    width: 100%;
+    height: 64px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.info .avatar {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #ccc;
+}
+.info .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.info .text {
+    flex: 1;
+    margin-left: 10px;
+}
+.info .text .name {
+    display: block;
+    font-size: 15px;
+}
+.info .text label {
+    display: inline-block;
+    font-size: 14px;
+    color: #6e6e6e;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.info .text label:hover {
+    color: #333;
+}
+.info .text label i {
+    margin-right: 5px;
+}
+.info .text input {
+    display: none;
+}
+@media only screen and (max-width: 1024px) {
+    .wrapper {
+        padding: 20px;
+        margin-top: 0;
+    }
+    .logo {
+        display: none;
+    }
+}

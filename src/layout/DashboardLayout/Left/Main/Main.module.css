@@ -1,0 +1,51 @@
+.wrapper {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    overflow: auto;
+}
+.wrapper ul {
+    width: 100%;
+    list-style: none;
+}
+.wrapper ul li {
+    position: relative;
+}
+.wrapper ul li.home {
+    display: none;
+}
+.wrapper ul li a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    color: #6e6e6e;
+    padding: 15px 10px;
+    font-size: 16px;
+}
+.wrapper ul li.active a,
+.wrapper ul li:hover a {
+    color: #000;
+}
+.wrapper ul li.active ::after,
+.wrapper ul li:hover::after {
+    position: absolute;
+    content: '';
+    width: 5px;
+    height: 100%;
+    background-color: #333;
+    right: 0;
+    top: 0;
+}
+.wrapper ul li a i {
+    margin-right: 15px;
+    font-size: 21px;
+}
+@media only screen and (max-width: 1024px) {
+    .wrapper ul {
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+    .wrapper ul li.home {
+        display: block;
+    }
+}

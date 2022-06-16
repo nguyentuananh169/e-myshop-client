@@ -1,25 +1,75 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import ScrollTop from './components/ScrollTop';
+import ToastMessage from './components/ToastMessage';
+import { publicRoutes, dashboardRoutes, adminRoutes } from './routes';
+
+import { checkAuthLogin } from './redux/actions/auth';
+import LoadingCheckLogin from './components/LoadingCheckLogin';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(checkAuthLogin());
+    }, [dispatch]);
+    const isCheckLogin = useSelector((state) => state.auth.isCheckLogin);
+    if (isCheckLogin) {
+        return <LoadingCheckLogin />;
+    }
+    return (
+        <Router>
+            <ScrollTop />
+            <ToastMessage />
+            <Routes>
+                {publicRoutes.map((route, index) => {
+                    const Page = route.component;
+                    const Layout = route.layout || Fragment;
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+                {dashboardRoutes.map((route, index) => {
+                    const Page = route.component;
+                    const Layout = route.layout || Fragment;
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+                {adminRoutes.map((route, index) => {
+                    const Page = route.component;
+                    const Layout = route.layout || Fragment;
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

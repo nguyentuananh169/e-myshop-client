@@ -1,0 +1,43 @@
+.wrapper {
+    margin: 20px 0;
+}
+@keyframes an1 {
+    from {
+        top: -70px;
+    }
+    to {
+        top: -20px;
+    }
+}
+.wrapper.fixed {
+    position: fixed;
+    top: -20px;
+    width: 100%;
+    z-index: 97;
+    background-color: #fff;
+    border-bottom: 1px solid#ccc;
+    animation: an1 0.3s linear;
+    margin-bottom: 70px;
+}
+.navContent {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    align-items: center;
+    position: relative;
+}
+.navContent .iconBars {
+    display: none;
+}
+.navContent .iconBars i {
+    font-size: 21px;
+    cursor: pointer;
+}
+@media only screen and (max-width: 768px) {
+    .navContent {
+        justify-content: space-between;
+    }
+    .navContent .iconBars {
+        display: block;
+    }
+}

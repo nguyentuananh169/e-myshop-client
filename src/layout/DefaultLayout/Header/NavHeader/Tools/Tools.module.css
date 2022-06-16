@@ -1,0 +1,72 @@
+.tools {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.tools > ul {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+.tools > ul > li {
+    list-style: none;
+    position: relative;
+}
+.tools > ul > li:hover > a {
+    color: #7a7c7f;
+}
+.tools > ul > li > a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 12px;
+    font-size: 20px;
+    position: relative;
+}
+.tools > ul > li:hover > span {
+    color: #7a7c7f;
+}
+.tools > ul > li > span {
+    color: #333;
+    padding: 5px 12px;
+    font-size: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.tools > ul > li:last-child > span {
+    padding-right: 0;
+}
+.tools > ul > li > a > span.bubble {
+    position: absolute;
+    bottom: 2px;
+    right: 9px;
+    font-size: 12px;
+    display: block;
+    padding: 4px;
+    background-color: #2dffb3;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px #fff;
+}
+.tools > ul > li > a > span.countCart {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+    font-size: 12px;
+}
+.tools > ul > li > .DropdownMenu {
+    width: 150px;
+    position: absolute;
+    right: 0;
+    z-index: 22;
+    display: none;
+}
+.tools > ul > li:hover > .DropdownMenu {
+    display: block;
+}
+@media only screen and (max-width: 768px) {
+    .tools ul li {
+        display: none;
+    }
+    .tools ul li:last-child {
+        display: block;
+    }
+}

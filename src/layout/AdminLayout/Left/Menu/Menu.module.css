@@ -1,0 +1,10 @@
+.wrapper {
+    width: 100%;
+    flex: 1;
+    padding: 5px 17px;
+    position: relative;
+    overflow-x: auto;
+}
+.wrapper ul {
+    width: 100%;
+}

@@ -1,0 +1,31 @@
+.wrapper {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 7px;
+    border-radius: 7px;
+    box-shadow: 0 3px 5px 2px #ccc;
+}
+.wrapper > h3 {
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.wrapper table {
+    width: 100%;
+    margin-top: 10px;
+}
+.wrapper table tr td {
+    font-size: 13px;
+    padding: 5px;
+}
+.wrapper table tr td.label {
+    font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+    .wrapper .table {
+        overflow: auto;
+    }
+    .wrapper table {
+        min-width: 768px;
+    }
+}

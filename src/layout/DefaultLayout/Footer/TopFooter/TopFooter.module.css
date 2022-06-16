@@ -1,0 +1,25 @@
+.topFooter {
+    width: 100%;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.text {
+    color: #fff;
+    font-weight: 600;
+}
+.icons a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 7px;
+    transition: all 0.2s ease;
+}
+.icons a:hover {
+    color: #a89cbd;
+}
+.footerLine {
+    width: 100%;
+    height: 1px;
+    background-color: #3e0e8f;
+}

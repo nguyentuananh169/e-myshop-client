@@ -1,0 +1,62 @@
+.wrapper {
+    background-color: #260759;
+}
+.wrapper.fixed {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 9;
+}
+.topHeader {
+    display: flex;
+    height: 36px;
+}
+.topHeader .social {
+    width: 30%;
+    text-align: left;
+    line-height: 36px;
+}
+.topHeader .social a {
+    color: #fff;
+    text-decoration: none;
+}
+.topHeader .social a + a {
+    padding-left: 8px;
+}
+.topHeader .social span {
+    padding-left: 8px;
+    color: #e8e5ed;
+    font-size: 14px;
+}
+.topHeader .welcome {
+    width: 40%;
+    text-align: center;
+    line-height: 36px;
+}
+.topHeader .welcome span {
+    color: #e8e5ed;
+    font-size: 14px;
+}
+.topHeader .contact {
+    width: 30%;
+    text-align: right;
+    line-height: 36px;
+}
+.topHeader .contact span {
+    color: #e8e5ed;
+    padding-right: 8px;
+    font-size: 14px;
+}
+.topHeader .contact a {
+    color: #fff;
+    text-decoration: none;
+}
+.topHeader .contact a + a {
+    padding-left: 8px;
+}
+@media only screen and (max-width: 768px) {
+    .wrapper {
+        display: none;
+    }
+}

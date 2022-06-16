@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    font-size: 14px;
+}
+.container {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+}
+button,
+input,
+textarea {
+    outline: none;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 98;
+    display: none;
+    animation: opacity 0.3s ease-in;
+}
+.overlay.c-pointer {
+    cursor: pointer;
+}
+.overlay.active {
+    display: block;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes bubble {
+    0% {
+        transform: scale(1, 1);
+    }
+    16% {
+        transform: scale(1.2, 0.7);
+    }
+    32% {
+        transform: scale(0.8, 1.2);
+    }
+    48% {
+        transform: scale(1.07, 0.9);
+    }
+    64% {
+        transform: scale(0.9, 1.07);
+    }
+    80% {
+        transform: scale(0.95, 0.95);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+.aniBubble {
+    animation: bubble 1s ease infinite;
+}
+.custom-scrollbars::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+/* Track */
+.custom-scrollbars::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbars::-webkit-scrollbar-track:hover {
+    background: #636f83;
+}
+/* Handle */
+.custom-scrollbars::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+/* Handle on hover */
+.custom-scrollbars::-webkit-scrollbar-thumb:hover {
+    background: #ddd;
+}
+/*  */
+.btnSlider {
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 22px;
+    z-index: 1;
+    color: #4b4b4b;
+    border: 1px solid#ccc;
+    box-shadow: 0 0 5px 2px #ccc;
+}
+@media only screen and (max-width: 1120px) {
+    .container {
+        padding: 0 20px;
+    }
+}

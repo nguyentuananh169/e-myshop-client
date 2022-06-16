@@ -1,0 +1,65 @@
+tr.wrapper td {
+    padding: 7px;
+}
+
+tr.wrapper th,
+tr.wrapper td:not(.no-border) {
+    border: 1px solid#ccc;
+    border-collapse: collapse;
+}
+tr.wrapper td {
+    font-size: 14px;
+}
+tr.wrapper td img {
+    width: 126px;
+    height: 157px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+tr.wrapper td p {
+    font-size: 13px;
+    line-height: 19px;
+}
+tr.wrapper td p.name {
+    color: #260759;
+    font-weight: 600;
+}
+tr.wrapper td p.promotion {
+    color: rgb(136, 136, 136);
+}
+tr.wrapper td p + p {
+    margin-top: 5px;
+}
+tr.wrapper td .qty {
+    display: flex;
+}
+tr.wrapper td .qty button {
+    outline: none;
+    width: 25px;
+    height: 25px;
+    border: 1px solid#ccc;
+    background-color: transparent;
+    cursor: pointer;
+}
+tr.wrapper td .qty input {
+    outline: none;
+    width: 40px;
+    height: 25px;
+    border: 1px solid#ccc;
+    text-align: center;
+}
+tr.wrapper td.remove button {
+    outline: none;
+    width: 30px;
+    height: 30px;
+    border: 2px solid#ccc;
+    color: #ccc;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+tr.wrapper td.remove button:hover {
+    border: 2px solid #fe2e2e;
+    color: #fe2e2e;
+}

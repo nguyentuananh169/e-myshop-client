@@ -1,0 +1,147 @@
+.productDetailImg {
+    width: 50%;
+}
+.imgPreviewContainer {
+    width: 100%;
+    height: 336px;
+    position: relative;
+    overflow: hidden;
+}
+.listImgPreview {
+    height: 100%;
+    display: flex;
+    transition: transform 0.5s linear;
+}
+.imgPreviewContainer .wishProduct {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 5px #444;
+    font-size: 21px;
+    color: #444;
+    z-index: 1;
+}
+.imgPreviewContainer .wishProduct.active {
+    color: #fd475a;
+    box-shadow: 0 0 5px #fd475a;
+}
+.imgPreviewContainer .wishProduct:hover:not(.active) {
+    color: #fd475a;
+    box-shadow: 0 0 5px #fd475a;
+}
+.btnImgPreview {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgba(189, 189, 189, 0.3);
+    color: #260759;
+    font-size: 21px;
+    z-index: 2;
+}
+.btnImgPreview:hover {
+    color: #000;
+    background-color: #bdbdbd;
+}
+.btnImgPreview.prev {
+    top: 45%;
+    left: 10px;
+}
+.btnImgPreview.next {
+    top: 45%;
+    right: 10px;
+}
+.imgPreviewContainer .imgItem {
+    width: 100%;
+    height: 100%;
+}
+.imgPreviewContainer .imgItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.listImg {
+    width: 100%;
+    height: 100px;
+    position: relative;
+    margin-top: 10px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 10px 0;
+}
+.listImg .prevSliderImg {
+    width: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.btnSliderImg {
+    width: 100%;
+    height: 80%;
+    background-color: #260759;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    font-size: 21px;
+    color: #fff;
+}
+.btnSliderImg.prev {
+    border-radius: 0 7px 7px 0;
+}
+.listImg .listImgProductContainer {
+    flex: 1;
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    margin: 0 10px;
+}
+.listImgProduct {
+    height: 100%;
+    display: flex;
+    margin: 0 auto;
+    transition: transform 0.5s linear;
+}
+.imgProductItem {
+    height: 100%;
+    padding: 0 5px;
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+.imgProductItem.active {
+    border: 1px solid #260759;
+}
+.imgProductItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.listImg .nextSliderImg {
+    width: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.btnSliderImg.next {
+    border-radius: 7px 0 0 7px;
+}
+@media only screen and (max-width: 1024px) {
+    .productDetailImg {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .productDetailImg {
+        width: 100%;
+    }
+}

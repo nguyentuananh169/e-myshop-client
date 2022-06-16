@@ -1,0 +1,30 @@
+.wrapper {
+    width: calc(30% - 15px);
+    margin-left: 15px;
+}
+.container {
+    width: 100%;
+    border: 1px solid#ccc;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.heading {
+    padding: 20px;
+    border-bottom: 1px solid#ccc;
+}
+.heading strong {
+    font-size: 16px;
+}
+.body {
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+@media only screen and (max-width: 1024px) {
+    .wrapper {
+        width: calc(100% - 15px);
+        margin-left: 0;
+        margin-top: 20px;
+    }
+}

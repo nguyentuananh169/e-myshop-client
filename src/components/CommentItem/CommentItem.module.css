@@ -1,0 +1,129 @@
+.container {
+    width: 100%;
+    display: flex;
+}
+/* comment lv2 */
+.container.lv2 {
+    margin-top: 20px;
+    border-left: 2px solid #ccc;
+    padding-left: 20px;
+}
+.container + .container {
+    margin-top: 20px;
+}
+.container .avatar {
+    width: 70px;
+}
+.avatar img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.info {
+    flex: 1;
+    position: relative;
+}
+.info > button {
+    margin-top: 20px;
+}
+.info .name strong {
+    font-size: 14px;
+}
+.info .name span {
+    font-size: 13px;
+    margin-left: 20px;
+    color: #260759;
+}
+.info .name span i {
+    margin-right: 5px;
+}
+.info .star {
+    font-size: 15px;
+    margin-top: 5px;
+    color: #ccc;
+}
+.info .star i + i {
+    margin-left: 5px;
+}
+.info .star i.no-color {
+    color: #ccc;
+}
+.info .star i.color {
+    color: #fed330;
+}
+.info .time {
+    font-size: 13px;
+    margin-top: 10px;
+    color: #848484;
+}
+.info .content {
+    font-size: 13px;
+    margin-top: 10px;
+    line-height: 19px;
+}
+.info button.tools {
+    width: 100px;
+    height: 35px;
+    background-color: #e6e6e6;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.info button + button {
+    margin-left: 10px;
+}
+.info button.tools i {
+    margin-right: 5px;
+}
+.info button.tools:hover {
+    background-color: #bdbdbd;
+}
+.info button.tools.active {
+    background-color: #bdbdbd;
+}
+.info button.disabled {
+    width: 100px;
+    height: 35px;
+    background-color: #e6e6e6;
+    outline: none;
+    border: none;
+    cursor: no-drop;
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        padding-bottom: 10px;
+        border-left: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0 0 0 7px;
+    }
+    .container .avatar {
+        padding-left: 5px;
+    }
+    .container.lv2 {
+        border: none;
+    }
+    .container.lv2 .avatar {
+        margin-left: -80px;
+        padding-left: 10px;
+        position: relative;
+    }
+    .container.lv2 .avatar::before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0 0 0 7px;
+        left: -10px;
+        top: 10px;
+    }
+    .container .info .name span {
+        display: block;
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}

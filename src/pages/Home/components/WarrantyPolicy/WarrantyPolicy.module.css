@@ -1,0 +1,44 @@
+.warrantyPolicy {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px;
+}
+.warrantyPolicy .item {
+    width: 25%;
+    padding: 10px;
+}
+.warrantyPolicy .item .icon {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.warrantyPolicy .item .icon img {
+    width: 60px;
+    height: 50px;
+    display: block;
+    object-fit: contain;
+}
+.warrantyPolicy .item .title {
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+.warrantyPolicy .item .content {
+    margin-top: 20px;
+    text-align: center;
+    color: #444;
+}
+.warrantyPolicy .item .content span {
+    line-height: 21px;
+}
+@media only screen and (max-width: 768px) {
+    .warrantyPolicy .item {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .warrantyPolicy .item {
+        width: 100%;
+    }
+}

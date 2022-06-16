@@ -1,0 +1,69 @@
+.subscript {
+    width: 766px;
+    max-width: 100%;
+    margin: 80px auto;
+}
+.subscript h3 {
+    display: block;
+    text-align: center;
+}
+.text {
+    text-align: center;
+    margin-top: 25px;
+    color: #444;
+}
+.form > input {
+    width: 100%;
+    height: 40px;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    background-color: #f2ecff;
+    color: #444;
+    font-size: 14px;
+    border-radius: 7px;
+    transition: all 0.3s ease;
+}
+.form > input:hover,
+.form > input:focus {
+    box-shadow: 0 0 0 2px #ac86ff;
+    background-color: #d8c6ff;
+}
+.checkbox {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.checkbox input#check-input {
+    outline: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.checkbox label {
+    margin-left: 5px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 12px;
+    color: #585858;
+}
+.buttonSubmit {
+    margin-top: 20px;
+    width: 100%;
+    height: 56px;
+    outline: none;
+    border: none;
+    background-color: #5600e3;
+    color: #fff;
+    border-radius: 7px;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    font-size: 14px;
+}
+.buttonSubmit:hover {
+    box-shadow: 0 0 0 3px #8f4aff;
+}
+.buttonSubmit i {
+    margin-right: 5px;
+}

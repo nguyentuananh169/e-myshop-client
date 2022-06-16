@@ -1,0 +1,49 @@
+.cartToltal {
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: 0 4px 6px #00000029;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: right;
+}
+.discountCode {
+    display: flex;
+    justify-content: flex-end;
+}
+.discountCode input {
+    width: 120px;
+    padding: 0 10px;
+    height: 35px;
+    outline: none;
+    border: 1px solid#ccc;
+}
+.discountCode button {
+    padding: 0 10px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #665ed4;
+    color: #fff;
+    outline: none;
+    border: 0;
+}
+.cartToltal p {
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.cartToltal p strong {
+    color: #fd475a;
+}
+.cartToltal a {
+    display: inline-block;
+    padding: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+.cartToltal a + a {
+    margin-left: 10px;
+}

@@ -1,0 +1,92 @@
+.wrapper {
+    border-left: 1px solid#ccc;
+    width: 40%;
+    padding-left: 10px;
+}
+.wrapper table {
+    width: 100%;
+}
+.wrapper table tr td {
+    padding: 5px 7px;
+}
+.wrapper table tr td img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.wrapper table tr td.info .name {
+    font-size: 14px;
+    line-height: 19px;
+}
+.wrapper table tr td.info .attr {
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+.wrapper table tr td.info .qty {
+    font-size: 14px;
+}
+.module {
+    border-top: 2px solid#333;
+    padding: 0 9px;
+}
+.totalPrice {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.totalPrice span:last-child {
+    color: #fa5858;
+    font-weight: 600;
+    font-size: 16px;
+}
+.payments {
+    margin-top: 20px;
+}
+.payments input {
+    margin-right: 5px;
+}
+.payments label {
+    cursor: pointer;
+    font-size: 14px;
+}
+.actions {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media only screen and (max-width: 1024px) {
+    .wrapper {
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .wrapper {
+        width: 100%;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #ccc;
+        border-left: 0;
+        padding-left: 0;
+    }
+    .body-table {
+        width: 100%;
+        overflow: auto;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .actions {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .actions button {
+        margin-top: 20px;
+    }
+}
+@media only screen and (max-width: 376px) {
+    .wrapper table tr td.img {
+        display: none;
+    }
+}

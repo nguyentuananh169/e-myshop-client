@@ -1,0 +1,110 @@
+.filterBox {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.sortBy select {
+    min-width: 200px;
+    height: 100%;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid #23272b;
+    color: #444;
+    border-radius: 7px;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+.sortBy select:hover {
+    background-color: #23272b;
+    color: #fff;
+    box-shadow: 0 0 5px #23272b;
+}
+/* form */
+.filterForm {
+    position: fixed;
+    left: -320px;
+    top: 0;
+    width: 320px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f4f4f7;
+    z-index: 99;
+    transition: left 0.3s linear;
+}
+.filterForm.show {
+    left: 0;
+}
+.heading {
+    width: 100%;
+    height: 71px;
+    border-bottom: 1px solid#ccc;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.heading h4 {
+    flex: 1;
+    color: #333;
+}
+.heading h4 i {
+    margin-right: 5px;
+}
+.heading button {
+    width: 35px;
+    height: 35px;
+    outline: none;
+    background-color: #f4f4f7;
+    border: 1px solid #23272b;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #23272b;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.heading button:hover {
+    background-color: #23272b;
+    color: #f4f4f7;
+}
+.body {
+    padding: 20px;
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+}
+.formGroup + .formGroup {
+    margin-top: 20px;
+}
+.formGroup label {
+    display: block;
+    position: relative;
+    padding-bottom: 10px;
+    color: #333;
+}
+.formGroup label::before {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #ccc;
+    left: 0;
+    bottom: 0;
+}
+.formGroup select {
+    width: 100%;
+    height: 30px;
+    margin-top: 20px;
+    outline: none;
+    padding: 0 10px;
+    border: 1px solid#ccc;
+}
+@media only screen and (max-width: 480px) {
+    .filterBox {
+        flex-direction: column;
+    }
+    .sortBy select {
+        height: 37px;
+        margin-top: 20px;
+    }
+}

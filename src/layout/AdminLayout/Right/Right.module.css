@@ -1,0 +1,14 @@
+.wrapper {
+    margin-left: 260px;
+    height: 100%;
+    position: relative;
+    transition: all 0.3s linear;
+}
+.collapseMenu {
+    margin-left: 100px;
+}
+@media only screen and (max-width: 1024px) {
+    .wrapper {
+        margin-left: 0;
+    }
+}

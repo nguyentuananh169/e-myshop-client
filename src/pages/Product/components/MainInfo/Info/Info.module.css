@@ -1,0 +1,240 @@
+.productDetailCenter {
+    width: 50%;
+    padding: 0 20px;
+}
+.productPrice {
+    width: 100%;
+}
+.productPrice strong {
+    font-size: 25px;
+    color: #fd475a;
+}
+.productPrice i {
+    font-size: 15px;
+    margin-left: 10px;
+}
+.freeShip {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    background-color: #260759;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+.freeShip span {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #fff;
+}
+.freeShip i {
+    margin-right: 10px;
+    font-size: 21px;
+    color: #fff;
+}
+.productOption .label {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    margin-top: 10px;
+}
+.productOption .options {
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.options .option {
+    cursor: pointer;
+    width: 22%;
+    height: 40px;
+    border: 1px solid#ccc;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    overflow: hidden;
+    margin: 5px;
+    border-radius: 5px;
+}
+.option .check {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: transparent;
+    border: 1px solid#ccc;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.option .text {
+    margin-left: 5px;
+    font-size: 13px;
+    color: #444;
+    flex: 1;
+    position: relative;
+}
+.options .option.active {
+    border: 1px solid #260759;
+}
+.options .option:hover:not(.active) {
+    border: 1px solid #ff6801;
+}
+.options .option.active .check {
+    background-color: #260759;
+    color: #fff;
+}
+.productPromotion {
+    width: 100%;
+    margin-top: 10px;
+}
+.productPromotion strong {
+    font-size: 14px;
+    text-transform: uppercase;
+}
+.productPromotion ul {
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(129, 127, 127);
+    padding: 10px;
+}
+.productPromotion ul li {
+    list-style: none;
+    font-size: 13px;
+    line-height: 19px;
+    position: relative;
+    margin-left: 15px;
+}
+.productPromotion ul li::before {
+    position: absolute;
+    content: '\2600';
+    color: orange;
+    left: -15px;
+}
+.productPromotion ul li + li {
+    margin-top: 5px;
+}
+.productCheckQty {
+    margin-top: 10px;
+    width: 100%;
+}
+.productCheckQty span.conHang {
+    color: #2eb85c;
+    font-size: 14px;
+    font-weight: 600;
+}
+.productCheckQty span.hetHang {
+    color: #df0101;
+    font-size: 14px;
+    font-weight: 600;
+}
+.productCheckQty span i.fa {
+    margin-right: 5px;
+    font-size: 16px;
+}
+.productCheckQty i:not(.fa) {
+    margin-left: 5px;
+    font-size: 13px;
+    font-weight: 500;
+}
+.productQty {
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+.productQty p {
+    font-size: 14px;
+}
+.productQty strong {
+    font-size: 14px;
+}
+.productQty .qty {
+    margin-left: 10px;
+    height: 100%;
+}
+.productQty .qty button {
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    border: 1px solid#ccc;
+    outline: none;
+    cursor: pointer;
+}
+.productQty .qty input {
+    width: 70px;
+    height: 100%;
+    border: 1px solid#ccc;
+    text-align: center;
+    line-height: 30px;
+    outline: none;
+}
+.productAction {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.productAction button {
+    width: 49%;
+    height: 40px;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+.productAction.disabled button {
+    cursor: no-drop;
+}
+.productAction button.buyNow {
+    border: 1px solid #260759;
+}
+.productAction:not(.disabled) button.buyNow:hover {
+    background-color: #260759;
+    color: #fff;
+}
+.productAction button.addCart {
+    background-color: #260759;
+    color: #fff;
+}
+.productAction:not(.disabled) button.addCart:hover {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #260759;
+}
+/* --------- */
+@media only screen and (max-width: 768px) {
+    .productDetailCenter {
+        width: 100%;
+        margin-top: 20px;
+        padding: 0;
+    }
+    .options .option {
+        width: 30%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .productPrice i {
+        display: block;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .freeShip span {
+        text-transform: capitalize;
+    }
+    .options .option {
+        width: 45%;
+    }
+    .productAction button.buyNow {
+        width: 100%;
+    }
+    .productAction button.addCart {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

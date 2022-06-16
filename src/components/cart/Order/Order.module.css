@@ -1,0 +1,57 @@
+.wrapper {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 0 3px 5px 2px #ccc;
+}
+.wrapper > h3 {
+    display: inline-block;
+    font-size: 15px;
+    margin-top: 10px;
+}
+.wrapper table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+.wrapper table tr th,
+.wrapper table tr td {
+    font-size: 13px;
+    padding: 7px;
+}
+.wrapper table,
+.wrapper table th,
+.wrapper table td {
+    border: 1px solid #dedede;
+}
+.wrapper table tr th {
+    background-color: #260759;
+    color: #fff;
+}
+.wrapper table td img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.wrapper table tr.noBorder td {
+    border: none;
+}
+.wrapper table tr td.center {
+    text-align: center;
+}
+.wrapper table tr td.right {
+    text-align: right;
+}
+.wrapper table tr td.totalPrice {
+    color: #fd475a;
+    font-weight: 600;
+}
+@media only screen and (max-width: 768px) {
+    .wrapper .table {
+        overflow: auto;
+    }
+    .wrapper table {
+        min-width: 768px;
+    }
+}

@@ -1,0 +1,30 @@
+.footerLine {
+    width: 100%;
+    height: 1px;
+    background-color: #3e0e8f;
+}
+.bottomFooter {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.text {
+    color: #fff;
+    font-size: 14px;
+}
+.text a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+.text a:hover {
+    color: #a89cbd;
+}
+.icons img {
+    width: 35px;
+    height: 29px;
+    margin-left: 15px;
+    object-fit: contain;
+}

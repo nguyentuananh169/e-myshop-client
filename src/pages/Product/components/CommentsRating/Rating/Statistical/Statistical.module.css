@@ -1,0 +1,107 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    align-items: center;
+}
+.wrapper .starRating {
+    width: 25%;
+    text-align: center;
+}
+.wrapper .starRating strong {
+    font-size: 15px;
+    text-transform: capitalize;
+}
+.wrapper .starRating p {
+    font-size: 14px;
+    margin-top: 5px;
+}
+.wrapper .starRating p.rating {
+    font-size: 19px;
+    color: #cb1c22;
+    font-weight: 600;
+}
+.wrapper .starRating p i {
+    color: #fed330;
+}
+/*  */
+.wrapper .starLine {
+    width: 50%;
+    text-align: center;
+    padding: 0 20px;
+}
+.wrapper .starLine .item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper .starLine .item + .item {
+    margin-top: 5px;
+}
+.wrapper .starLine .item .number {
+    width: 40px;
+    font-size: 14px;
+    text-align: right;
+}
+.wrapper .starLine .item .number i.fa {
+    color: #fed330;
+    margin-left: 5px;
+}
+.wrapper .starLine .item .line {
+    flex: 1;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin: 0 10px;
+    overflow: hidden;
+    position: relative;
+}
+.wrapper .starLine .item .line .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ff4000;
+    transition: all 0.3s linear;
+}
+.wrapper .starLine .item .percent {
+    width: 50px;
+    font-size: 13px;
+}
+/*  */
+.wrapper .countRating {
+    width: 25%;
+    text-align: center;
+}
+.wrapper .countRating p {
+    font-size: 14px;
+}
+.wrapper .countRating p + p {
+    margin-top: 6px;
+}
+@media only screen and (max-width: 768px) {
+    .wrapper .starRating {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .wrapper .starLine {
+        width: 70%;
+    }
+    .wrapper .countRating {
+        width: 30%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .wrapper .starRating {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .wrapper .starLine {
+        width: 100%;
+    }
+    .wrapper .countRating {
+        display: none;
+    }
+}

@@ -1,0 +1,40 @@
+.wrapper {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+.wrapper ul {
+    display: flex;
+}
+.wrapper ul li {
+    list-style: none;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.wrapper ul li + li {
+    margin-left: 5px;
+}
+.wrapper ul li.active button {
+    background-color: #7367f0;
+    color: #fff;
+}
+.wrapper ul li button {
+    color: #b4b7bd;
+    width: 32px;
+    height: 32px;
+    background-color: #242b3d;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.wrapper ul li.disabled button {
+    color: #b4b7bd;
+    width: 32px;
+    height: 32px;
+    background-color: #242b3d;
+    font-size: 13px;
+    outline: none;
+    border: none;
+    cursor: no-drop;
+}

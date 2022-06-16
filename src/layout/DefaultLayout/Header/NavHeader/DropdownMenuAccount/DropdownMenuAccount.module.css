@@ -1,0 +1,44 @@
+.wrapper {
+    min-width: 150px;
+    background-color: #fff;
+    border: 1px solid#ccc;
+    border-radius: 7px;
+    animation: a1 0.3s linear;
+}
+@keyframes a1 {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.wrapper ul {
+    width: 100%;
+    padding: 10px;
+}
+.wrapper ul li {
+    list-style: none;
+    width: 100%;
+    border-radius: 5px;
+}
+.wrapper ul li a,
+.wrapper ul li span {
+    text-decoration: none;
+    text-transform: capitalize;
+    color: #333;
+    display: block;
+    padding: 10px;
+}
+.wrapper ul li span {
+    cursor: pointer;
+}
+.wrapper ul li:hover {
+    background-color: #e6e6e6;
+}
+.wrapper ul li a i,
+.wrapper ul li span i {
+    margin-right: 7px;
+}

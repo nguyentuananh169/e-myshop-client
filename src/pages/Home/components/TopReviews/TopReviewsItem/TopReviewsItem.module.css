@@ -1,0 +1,54 @@
+.topReviewsItem {
+    margin: 0 15px;
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 7px;
+}
+.topReviewsItemAvatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.topReviewsItemAvatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.topReviewsItemMain {
+    flex: 1;
+    margin-left: 30px;
+    position: relative;
+}
+.topReviewsItemMain .name {
+    font-weight: 600;
+}
+.topReviewsItemMain .reviewsRating {
+    margin-top: 10px;
+}
+.topReviewsItemMain .reviewsRating i {
+    margin-right: 5px;
+    color: #ccc;
+    font-size: 16px;
+}
+.topReviewsItemMain .reviewsRating i.color {
+    color: #fed330;
+}
+.topReviewsItemMain .content {
+    margin-top: 10px;
+}
+.topReviewsItemMain .content span {
+    font-size: 14px;
+    color: #333;
+    line-height: 21px;
+}
+.topReviewsItemMain .time {
+    margin-top: 10px;
+}
+.topReviewsItemMain .time span {
+    color: #585858;
+    font-size: 12px;
+}

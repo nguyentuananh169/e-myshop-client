@@ -1,0 +1,17 @@
+.containerListCategory {
+    position: relative;
+    overflow: hidden;
+    margin: 0 -15px;
+}
+.prevCategory {
+    left: 10px;
+    top: 20%;
+}
+.nextCategory {
+    right: 10px;
+    top: 30%;
+}
+.listCategory {
+    display: flex;
+    transition: transform 0.5s linear;
+}

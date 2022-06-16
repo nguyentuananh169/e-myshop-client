@@ -1,0 +1,26 @@
+.wrapper td {
+    text-align: center;
+    font-size: 14px;
+    padding: 5px 7px;
+}
+.status i {
+    margin-right: 5px;
+}
+.status.st1 {
+    color: #ffbf00;
+}
+.status.st2 {
+    color: #636f83;
+}
+.status.st3 {
+    color: #39f;
+}
+.status.st4 {
+    color: #2eb85c;
+}
+.status.st5 {
+    color: #df0101;
+}
+.wrapper.skeleton {
+    height: 50px;
+}

@@ -1,0 +1,24 @@
+footer {
+    width: 100%;
+    background-color: #260759;
+    height: auto;
+    margin-top: 35px;
+}
+.backToTop {
+    position: fixed;
+    right: -70px;
+    bottom: 50px;
+    outline: none;
+    background-color: transparent;
+    color: rgb(134, 130, 130);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgb(134, 130, 130);
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.backToTop:hover {
+    color: #333;
+    border: 1px solid#333;
+}
