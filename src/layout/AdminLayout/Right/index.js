@@ -1,11 +1,12 @@
 import clsx from 'clsx';
+import Content from './Content';
 import Header from './Header';
 import styles from './Right.module.css';
-function Right({ collapse, handleSetShowMenuMobile }) {
+function Right({ collapse, handleSetShowMenuMobile, children }) {
     return (
         <div className={clsx(styles.wrapper, { [styles.collapseMenu]: collapse })}>
-            {/* <button onClick={handleSetShowMenuMobile}>next</button> */}
-            <Header />
+            <Header collapse={collapse} handleSetShowMenuMobile={handleSetShowMenuMobile} />
+            <Content>{children}</Content>
         </div>
     );
 }

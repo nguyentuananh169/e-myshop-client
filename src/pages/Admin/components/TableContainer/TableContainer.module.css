@@ -1,0 +1,85 @@
+.wrapper {
+    width: 100%;
+    overflow: auto;
+    margin-top: 20px;
+}
+.wrapper table {
+    width: 100%;
+    min-width: 700px;
+}
+
+.wrapper table,
+.wrapper table td,
+.wrapper table th {
+    border: 1px solid #b4b7bd;
+    border-collapse: collapse;
+}
+.wrapper table th {
+    font-size: 15px;
+}
+.wrapper table td {
+    font-size: 13px;
+}
+.wrapper table td,
+.wrapper table th {
+    color: #b4b7bd;
+    padding: 9px 11px;
+    text-align: center;
+}
+.wrapper table td img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+.wrapper table td[data-type='action'] {
+    white-space: nowrap;
+}
+.wrapper table td[data-type='action'] label {
+    position: relative;
+    cursor: pointer;
+}
+.wrapper table td[data-type='action'] label i {
+    margin: 0;
+    font-size: 21px;
+    color: #b4b7bd;
+}
+.wrapper table td[data-type='action'] label + label i {
+    margin-left: 10px;
+}
+.wrapper table td[data-type='action'] label span {
+    position: absolute;
+    padding: 7px 10px;
+    background-color: #323232;
+    color: #b4b7bd;
+    border-radius: 7px;
+    right: -50%;
+    bottom: calc(100% + 10px);
+    min-width: 110px;
+    font-size: 12px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    display: none;
+}
+.wrapper table td[data-type='action'] label:hover span {
+    display: block;
+}
+.wrapper table td[data-type='action'] label:hover i {
+    color: #fff;
+}
+.wrapper table td select {
+    outline: none;
+    border: 1px solid #b4b7bd;
+    color: #b4b7bd;
+    background-color: #283046;
+    padding: 7px 9px;
+}
+.wrapper table td ul {
+    width: 100%;
+    list-style: none;
+}
+.wrapper table td ul li {
+    margin-top: 10px;
+}
+.wrapper table td ul li span {
+    padding-left: 5px;
+}

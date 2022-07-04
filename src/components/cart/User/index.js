@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import styles from './User.module.css';
-function User({ user }) {
+function User({ user, adminPage }) {
     return (
         <>
-            <div className={clsx(styles.wrapper)}>
+            <div className={clsx(styles.wrapper, { [styles.adminPage]: adminPage })}>
                 <h3>1. Thông tin người đặt hàng</h3>
                 <div className={clsx(styles.table, 'custom-scrollbars')}>
                     <table cellPadding="0" cellSpacing="0">

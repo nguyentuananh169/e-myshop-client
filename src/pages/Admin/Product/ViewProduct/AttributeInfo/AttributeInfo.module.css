@@ -1,0 +1,27 @@
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+.title {
+    color: #fafafa;
+}
+.wrapper table {
+    width: 100%;
+    margin-top: 20px;
+}
+.wrapper table,
+.wrapper table th,
+.wrapper table td {
+    border: 1px solid #b4b7bd;
+    border-collapse: collapse;
+}
+.wrapper table th,
+.wrapper table td {
+    color: #b4b7bd;
+    text-align: center;
+    padding: 7px 9px;
+    font-size: 14px;
+}
+.wrapper table th {
+    background-color: #303952;
+}

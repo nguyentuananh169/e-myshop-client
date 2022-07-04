@@ -5,6 +5,11 @@
     border-radius: 7px;
     box-shadow: 0 3px 5px 2px #ccc;
 }
+.wrapper.adminPage {
+    background-color: transparent;
+    box-shadow: none;
+    color: #b4b7bd;
+}
 .wrapper > h3 {
     display: inline-block;
     font-size: 15px;
@@ -18,6 +23,10 @@
 .wrapper table tr th {
     background-color: #260759;
     color: #fff;
+}
+.wrapper.adminPage table tr th {
+    background-color: transparent;
+    color: #b4b7bd;
 }
 .wrapper table tr th,
 .wrapper table tr td {

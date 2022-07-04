@@ -6,7 +6,7 @@ import bg from '../../../assets/img/background/icon-account-order.png';
 import styles from './Order.module.css';
 import { useEffect, useState } from 'react';
 import OrderItem from './OrderItem';
-import LoadingBox from '../../../components/LoadingBox';
+import Loading from './OrderItem/Loading';
 import Pagination from '../../../components/Pagination';
 import NoData from '../../../components/NoData';
 function Order() {
@@ -56,11 +56,7 @@ function Order() {
                                 <th>Thao tác</th>
                             </tr>
                             {isLoading ? (
-                                <tr>
-                                    <td colSpan={6}>
-                                        <LoadingBox />
-                                    </td>
-                                </tr>
+                                <Loading count={limit} />
                             ) : (
                                 listOrders.map((item, index) => (
                                     <OrderItem key={item.order_id} item={item} stt={index + 1} />

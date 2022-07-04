@@ -16,6 +16,7 @@ import Payment from '../pages/Payment';
 import Checkout from '../pages/Checkout';
 import CartSubmit from '../pages/CartSubmit';
 import Contact from '../pages/Contact';
+import TestForm from '../TestForm';
 const publicRoutes = [
     { path: '/', component: Home, layout: DefaultLayout },
     { path: '/product/:id', component: Product, layout: DefaultLayout },
@@ -36,5 +37,6 @@ const publicRoutes = [
     { path: '/thu-tuc-thanh-toan', component: Checkout, layout: DefaultLayout },
     { path: '/gio-hang/gui-di/:id/:totalPrice', component: CartSubmit, layout: DefaultLayout },
     { path: '/lien-he', component: Contact, layout: DefaultLayout },
+    { path: '/test-form', component: TestForm, layout: null },
 ];
 export default publicRoutes;

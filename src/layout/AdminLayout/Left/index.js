@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from './Header';
 import styles from './Left.module.css';
 import Menu from './Menu';
-function Left({ showMobile, collapse, handleSetCollapse,handleSetShowMenuMobile }) {
+function Left({ showMobile, collapse, handleSetCollapse, handleSetShowMenuMobile }) {
     return (
         <div
             className={clsx(styles.wrapper, {
@@ -11,7 +11,12 @@ function Left({ showMobile, collapse, handleSetCollapse,handleSetShowMenuMobile 
                 [styles.showMobile]: showMobile,
             })}
         >
-            <Header collapse={collapse} handleSetCollapse={handleSetCollapse} handleSetShowMenuMobile={handleSetShowMenuMobile} />
+            <Header
+                showMobile={showMobile}
+                collapse={collapse}
+                handleSetCollapse={handleSetCollapse}
+                handleSetShowMenuMobile={handleSetShowMenuMobile}
+            />
             <Menu collapse={collapse} />
         </div>
     );

@@ -8,7 +8,7 @@
     box-shadow: 0 0 9px #ccc;
     border-radius: 5px;
 }
-form {
+.wrapper form {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

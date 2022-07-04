@@ -1,15 +1,14 @@
-export const isEmail = (value) => {
-    const formatValue = value.trim();
-    const reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
-    if (!reg.test(formatValue)) {
-        return 'Nội dung chưa hợp lệ. VD: abc@gmail.com';
-    }
-};
 const objectRules = {
     required: (value) => {
-        const formatValue = value.trim();
-        if (!formatValue) {
-            return 'Trường này không được để trống';
+        if (typeof value === 'string') {
+            const formatValue = value.trim();
+            if (!formatValue) {
+                return 'Trường này không được để trống';
+            }
+        } else {
+            if (!value) {
+                return 'Trường này không được để trống';
+            }
         }
     },
     email: (value) => {
@@ -17,6 +16,32 @@ const objectRules = {
         const reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
         if (!reg.test(formatValue) && formatValue) {
             return 'Nội dung chưa hợp lệ. VD: abc@gmail.com';
+        }
+    },
+    number: (value) => {
+        if (!(value % 1 === 0)) {
+            return 'Nội dung phải là dạng số';
+        }
+    },
+    minNumber: (value, number) => {
+        if (!(value % 1 === 0)) {
+            return 'Nội dung phải là dạng số';
+        }
+        if (value < number) {
+            return `Giá trị phải lớn hơn ${number}`;
+        }
+    },
+    maxNumber: (value, number) => {
+        if (!(value % 1 === 0)) {
+            return 'Nội dung phải là dạng số';
+        }
+        if (value > number) {
+            return `Giá trị phải nhỏ hơn ${number}`;
+        }
+    },
+    numberInteger: (value) => {
+        if (!(value % 1 === 0)) {
+            return 'Nội dung phải là dạng số nguyên và lớn hơn 0';
         }
     },
     phoneNumber: (value) => {
@@ -42,7 +67,23 @@ const objectRules = {
     maxLength: (value, max) => {
         const formatValue = value.trim();
         if (formatValue.length > max) {
-            return `Nội dung phải nhỏ hơn ${max} ký tự `;
+            return `Nội dung phải nhỏ hơn ${max} ký tự`;
+        }
+    },
+    fileImg: (file) => {
+        if (file) {
+            const covert = file.split('.');
+            const type = covert[covert.length - 1].toLowerCase();
+            if (type !== 'png' && type !== 'jpg' && type !== 'gif') {
+                return `Hình ảnh không đúng định dạng (PNG, JPEG, GIF)`;
+            }
+        }
+    },
+    fileLength: (count, length) => {
+        if (count) {
+            if (count > length) {
+                return `Chỉ được chọn tối đa ${length} file`;
+            }
         }
     },
 };

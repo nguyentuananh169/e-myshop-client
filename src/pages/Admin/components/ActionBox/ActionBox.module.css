@@ -1,0 +1,80 @@
+.wrapper {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.left label {
+    color: #b4b7bd;
+    font-size: 14px;
+}
+.left select {
+    margin-left: 10px;
+    padding: 7px 9px;
+    background-color: transparent;
+    border: 1px solid #b4b7bd;
+    color: #b4b7bd;
+    outline: none;
+    border-radius: 5px;
+    min-width: 60px;
+    transition: all 0.3s ease;
+}
+.right input {
+    width: 227px;
+    height: 37px;
+    outline: none;
+    border: 1px solid #b4b7bd;
+    background-color: transparent;
+    border-radius: 5px;
+    color: #b4b7bd;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+.right input:focus {
+    border: 1px solid #7367f0;
+}
+.right input:focus::placeholder {
+    transition: all 0.3s linear;
+    padding-left: 10px;
+}
+.right select {
+    width: 190px;
+    height: 37px;
+    outline: none;
+    border: 1px solid #b4b7bd;
+    color: #b4b7bd;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 0 10px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+}
+.right select option,
+.left select option {
+    color: #b4b7bd;
+    background-color: #283046;
+}
+@media only screen and (max-width: 768px) {
+    .left {
+        width: 100%;
+    }
+    .right {
+        margin-top: 10px;
+    }
+    .right input {
+        width: 45%;
+    }
+    .right select {
+        width: 45%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .right input {
+        width: 100%;
+    }
+    .right select {
+        width: 100%;
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}

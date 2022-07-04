@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import styles from './Status.module.css';
-function Status({ user }) {
+function Status({ user, adminPage }) {
     return (
-        <div className={clsx(styles.wrapper)}>
+        <div className={clsx(styles.wrapper, { [styles.adminPage]: adminPage })}>
             <strong>3. Trạng thái đơn hàng</strong>
             <div className={clsx(styles.table, 'custom-scrollbars')}>
                 <table className="border">

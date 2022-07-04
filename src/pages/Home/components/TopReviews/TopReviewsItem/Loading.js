@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import SkeletonLoading from '../../../../../components/SkeletonLoading';
 import styles from './TopReviewsItem.module.css';
 function Loading({ count = 1, width }) {
-    console.log(width);
     return Array(count)
         .fill(0)
         .map((item, index) => (

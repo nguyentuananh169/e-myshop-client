@@ -1,0 +1,154 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.wrapper > form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.buttonGroup {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.tabs {
+    height: 35px;
+    display: flex;
+    position: relative;
+}
+.tabs .tab {
+    outline: none;
+    background-color: #161d31;
+    color: #b4b7bd;
+    border: none;
+    width: 120px;
+    height: 100%;
+    cursor: pointer;
+}
+.tabs .line {
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    background-color: #df0101;
+    transition: all 0.3s linear;
+}
+.main {
+    margin-top: 20px;
+    flex: 1;
+    overflow: auto;
+    padding-right: 10px;
+}
+.tabAttribute,
+.tabDescription,
+.tabInfo {
+    display: none;
+}
+.tabAttribute.active,
+.tabDescription.active,
+.tabInfo.active {
+    display: block;
+}
+.formGroup {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.formGroup label {
+    text-align: right;
+}
+.formGroup + .formGroup {
+    margin-top: 20px;
+}
+.errorMessage {
+    display: none;
+    width: 100%;
+    font-size: 12px;
+    color: #fe2e2e;
+    margin-top: 10px;
+    margin-left: 220px;
+}
+.invalid .errorMessage {
+    display: block;
+}
+.note {
+    display: inline-block;
+    width: 100%;
+    font-size: 12px;
+    color: #b4b7bd;
+    margin-top: 10px;
+    margin-left: 220px;
+}
+/*  */
+.attrList {
+    width: 100%;
+    margin-top: 20px;
+}
+.attrItem {
+    width: 100%;
+    display: flex;
+}
+.attrItem:not(:first-child) {
+    margin-top: 20px;
+}
+.attrItem .value {
+    margin-left: 20px;
+}
+.attrItem button {
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+    padding: 0;
+}
+.attrItem button i {
+    margin-right: 0;
+}
+.note.attr {
+    margin: 10px 0;
+    text-align: right;
+    display: inline-block;
+    padding: 0 50px;
+}
+@media only screen and (max-width: 676px) {
+    .buttonGroup {
+        flex-direction: column-reverse;
+    }
+    .tabs {
+        margin-top: 20px;
+    }
+    /* tab info*/
+    .formGroup label {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 10px;
+    }
+    /* tab attribute */
+    .attrItem {
+        display: block;
+    }
+    .attrItem .value {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .attrItem button {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .errorMessage {
+        margin-left: 0;
+    }
+    .note {
+        margin-left: 0;
+    }
+    .note.attr {
+        margin: 10px 0;
+        text-align: left;
+        display: inline-block;
+        padding: 0;
+    }
+}

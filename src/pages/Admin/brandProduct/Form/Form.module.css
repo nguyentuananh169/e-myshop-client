@@ -1,0 +1,19 @@
+.formGroup + .formGroup {
+    margin-top: 20px;
+}
+.invalid input,
+.invalid select {
+    border: 1px solid #fe2e2e !important;
+}
+.messageError {
+    display: inline-block;
+    font-size: 12px;
+    color: #fe2e2e;
+    margin-top: 10px;
+}
+.note {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: #dba901;
+}

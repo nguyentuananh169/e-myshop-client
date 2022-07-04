@@ -2,9 +2,9 @@ import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
 import OrderItem from './OrderItem';
 import styles from './Order.module.css';
-function Order({ cartItems, totalPrice }) {
+function Order({ cartItems, totalPrice, adminPage }) {
     return (
-        <div className={clsx(styles.wrapper)}>
+        <div className={clsx(styles.wrapper, { [styles.adminPage]: adminPage })}>
             <h3>2. Danh sách sản phẩm đặt hàng</h3>
             <div className={clsx(styles.table, 'custom-scrollbars')}>
                 <table cellSpacing="0" cellPadding="0" className={clsx(styles.tableBorder)}>

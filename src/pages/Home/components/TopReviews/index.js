@@ -25,12 +25,12 @@ function TopReviews() {
     useEffect(() => {
         setWidthTopReviewsItem(elementRef.current.clientWidth / number);
         setWidthListTopReviews(widthTopReviewsItem * reviewsList.length);
-        // const autoSlider = setInterval(() => {
-        //     nextSlider();
-        // }, 7000);
-        // return () => {
-        //     clearInterval(autoSlider);
-        // };
+        const autoSlider = setInterval(() => {
+            nextSlider();
+        }, 7000);
+        return () => {
+            clearInterval(autoSlider);
+        };
     }, [indexSlider, widthTopReviewsItem, widthListTopReviews, reviewsList, number]);
     useEffect(() => {
         const changeNumber = () => {

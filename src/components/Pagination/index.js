@@ -4,7 +4,7 @@ function Pagination(props) {
     let liElements = Array(props.totalPage).fill(0);
     return (
         <div className={clsx(styles.wrapper)}>
-            {props.totalPage > 0 ? (
+            {props.totalPage > 0 && (
                 <ul>
                     <li
                         className={clsx({ [styles.disabled]: props.page <= 1 })}
@@ -29,8 +29,6 @@ function Pagination(props) {
                         <button>&#62;</button>
                     </li>
                 </ul>
-            ) : (
-                ''
             )}
         </div>
     );

@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './MenuItem.module.css';
 import { useState } from 'react';
@@ -24,9 +24,8 @@ function MenuItem({ item, collapse }) {
                     [styles.show]: open,
                     [styles.collapse]: collapse,
                 })}
-                onClick={handleShowDropdownMenu}
             >
-                <label className={styles.btn}>
+                <label className={styles.btn} onClick={handleShowDropdownMenu}>
                     <i className={item.icon}></i>
                     <span>{item.title}</span>
                 </label>
@@ -36,10 +35,15 @@ function MenuItem({ item, collapse }) {
                             key={index}
                             className={clsx({ [styles.active]: pathname === item.path })}
                         >
-                            <Link to={item.path} className={styles.btn}>
+                            <NavLink
+                                to={item.path}
+                                className={(nav) =>
+                                    clsx(styles.btn, { [styles.active]: nav.isActive })
+                                }
+                            >
                                 <i className={item.icon}></i>
                                 <span>{item.title}</span>
-                            </Link>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>
@@ -51,14 +55,16 @@ function MenuItem({ item, collapse }) {
                 {item.path ? (
                     <li
                         className={clsx(styles.wrapper, {
-                            [styles.active]: pathname === item.path,
                             [styles.collapse]: collapse,
                         })}
                     >
-                        <Link to={item.path} className={styles.btn}>
+                        <NavLink
+                            to={item.path}
+                            className={(nav) => clsx(styles.btn, { [styles.active]: nav.isActive })}
+                        >
                             <i className={item.icon}></i>
                             <span>{item.title}</span>
-                        </Link>
+                        </NavLink>
                     </li>
                 ) : (
                     <li

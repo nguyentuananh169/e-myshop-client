@@ -1,0 +1,30 @@
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+.title {
+    color: #fafafa;
+}
+.wrapper ul {
+    width: 100%;
+}
+.wrapper ul li {
+    width: 100%;
+    list-style: none;
+    color: #b4b7bd;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 19px;
+}
+.wrapper ul li .bag {
+    display: inline-block;
+    padding: 2px 5px;
+    background-color: #dba901;
+    color: #fff;
+    font-size: 10px;
+    border-radius: 5px;
+}
+.wrapper ul li p {
+    display: block;
+    margin-top: 10px;
+}

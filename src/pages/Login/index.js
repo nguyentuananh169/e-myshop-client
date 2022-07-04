@@ -7,79 +7,48 @@ import Path from '../../components/Path';
 import authApi from '../../api/authApi';
 import { addNewToastMessage } from '../../redux/actions/toastMessage';
 import { authLogin } from '../../redux/actions/auth';
-import { invalidInput, submitForm } from '../../hook/validationForm';
+import useForm from '../../hook/useForm';
 import styles from './Login.module.css';
 function Login() {
     const validates = [
         {
-            inputName: 'email',
-            rules: { required: '' },
+            name: 'email',
+            rules: { isRequired: true, isEmail: true },
         },
         {
-            inputName: 'password',
-            rules: { required: '' },
+            name: 'password',
+            rules: { isRequired: true },
         },
     ];
     const [isLoading, setLoading] = useState(false);
-    const [values, setValues] = useState({
-        email: '',
-        password: '',
-    });
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleChange = (e) => {
-        const formGroupElement = e.target.parentElement;
-        setValues({ ...values, [e.target.name]: e.target.value });
-        formGroupElement.classList.remove(clsx(styles.invalid));
-        formGroupElement.querySelector('.message').innerText = '';
-    };
-    const handleBlur = (element) => {
-        const valide = validates.filter((item) => item.inputName === element.name);
-        let message = invalidInput(valide[0].inputName, element.value, valide[0].rules);
-        const formGroupElement = element.parentElement;
-        if (message) {
-            formGroupElement.classList.add(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = message.message;
-        }
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const { errors, values, invalid, formChange, formSubmit } = useForm(validates);
+    const handleSubmit = async () => {
         if (isLoading) {
             return;
         }
-        const elements = e.target.elements;
-        const messageError = submitForm(elements, validates);
-        if (messageError.length > 0) {
-            for (let i = 0; i < messageError.length; i++) {
-                const formGroupElement = elements[messageError[i].name].parentElement;
-                formGroupElement.classList.add(clsx(styles.invalid));
-                formGroupElement.querySelector('span').innerText = messageError[i].message;
-            }
-        } else {
-            setLoading(true);
-            const params = new FormData();
-            params.append('_email', values.email);
-            params.append('_password', values.password);
-            const response = await authApi.loginMember(params);
-            if (response[0].error === 1) {
-                setLoading(false);
-                return dispatch(
-                    addNewToastMessage('error', 'Đăng nhập thất bại', response[0].message),
-                );
-            }
-            dispatch(
-                authLogin({
-                    access_token: response[0].access_token,
-                    user: response[0].user,
-                    isAuthentication: response[0].auth,
-                    isAdmin: response[0].admin,
-                    baseURLImg: response[0].baseURLImg,
-                }),
-            );
-            localStorage.setItem('access_token', JSON.stringify(response[0].access_token));
-            dispatch(addNewToastMessage('success', 'Đăng nhập thành công', 'Chào mừng bạn'));
-            navigate('/', { replace: true });
+        setLoading(true);
+        const params = new FormData();
+        params.append('_email', values.email);
+        params.append('_password', values.password);
+        const response = await authApi.loginMember(params);
+        if (response[0].error === 1) {
+            setLoading(false);
+            return dispatch(addNewToastMessage('error', 'Đăng nhập thất bại', response[0].message));
         }
+        dispatch(
+            authLogin({
+                access_token: response[0].access_token,
+                user: response[0].user,
+                isAuthentication: response[0].auth,
+                isAdmin: response[0].admin,
+                baseURLImg: response[0].baseURLImg,
+            }),
+        );
+        localStorage.setItem('access_token', JSON.stringify(response[0].access_token));
+        dispatch(addNewToastMessage('success', 'Đăng nhập thành công', 'Chào mừng bạn'));
+        navigate('/', { replace: true });
     };
     const checkLogin = useSelector((state) => state.auth.isAuthentication);
     if (checkLogin) {
@@ -95,33 +64,39 @@ function Login() {
         <>
             <Path path={path} />
             <div className="container">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => formSubmit(e, handleSubmit)}>
                     <div className={clsx(styles.wrapper)}>
                         <h2 className={clsx(styles.heading)}>Đăng nhập</h2>
                         <div className={clsx(styles.form)}>
-                            <div className={clsx(styles.formGroup)}>
+                            <div
+                                className={clsx(styles.formGroup, {
+                                    [styles.invalid]: errors.email,
+                                })}
+                            >
                                 <label>Email</label>
                                 <input
                                     type="text"
                                     name="email"
                                     placeholder="Nhập Email ..."
-                                    value={values.email}
-                                    onChange={handleChange}
-                                    onBlur={(e) => handleBlur(e.target)}
+                                    onChange={(e) => formChange('email', e.target.value)}
+                                    onBlur={(e) => invalid('email', e.target.value)}
                                 />
-                                <span className={clsx('message', styles.errorMessage)}></span>
+                                <span className={clsx(styles.errorMessage)}>{errors.email}</span>
                             </div>
-                            <div className={clsx(styles.formGroup)}>
+                            <div
+                                className={clsx(styles.formGroup, {
+                                    [styles.invalid]: errors.password,
+                                })}
+                            >
                                 <label>Mật khẩu</label>
                                 <input
                                     type="password"
                                     name="password"
                                     placeholder="Nhập mật khẩu ..."
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    onBlur={(e) => handleBlur(e.target)}
+                                    onChange={(e) => formChange('password', e.target.value)}
+                                    onBlur={(e) => invalid('password', e.target.value)}
                                 />
-                                <span className={clsx('message', styles.errorMessage)}></span>
+                                <span className={clsx(styles.errorMessage)}>{errors.password}</span>
                             </div>
                             <div className={clsx(styles.formGroup)}>
                                 <Button

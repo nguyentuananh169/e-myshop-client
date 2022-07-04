@@ -1,0 +1,35 @@
+.item {
+    width: calc(25% - 30px);
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: #283046;
+    padding: 20px;
+    border-radius: 5px;
+}
+.title {
+    font-size: 15px;
+    color: #b3b7bd;
+}
+.count {
+    color: #b3b7bd;
+    margin-top: 10px;
+}
+.btn {
+    margin-top: 30px;
+    font-size: 13px;
+}
+@media only screen and (max-width: 768px) {
+    .item {
+        width: calc(33.333% - 30px);
+    }
+}
+@media only screen and (max-width: 569px) {
+    .item {
+        width: calc(50% - 30px);
+    }
+}
+@media only screen and (max-width: 480px) {
+    .item {
+        width: calc(100% - 30px);
+    }
+}

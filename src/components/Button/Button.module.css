@@ -49,14 +49,14 @@
     box-shadow: 0 0 9px #665ed4;
 }
 .dark {
-    border: 1px solid #23272b;
-    background-color: #23272b;
+    border: 1px solid #636f83;
+    background-color: #636f83;
     color: #fff;
     transition: all 0.3s ease-in;
 }
 .dark:hover,
 .dark.active {
-    box-shadow: 0 0 9px #23272b;
+    box-shadow: 0 0 9px #636f83;
 }
 .danger {
     border: 1px solid #c82333;
@@ -108,11 +108,11 @@
 }
 .outline.dark:not(.active),
 .text.dark:not(.active) {
-    color: #23272b;
+    color: #636f83;
 }
 .outline.dark:hover {
     color: #fff;
-    background-color: #23272b;
+    background-color: #636f83;
 }
 .outline.warning:not(.active),
 .text.warning:not(.active) {
@@ -137,6 +137,7 @@
 }
 .disabled {
     opacity: 0.5;
+    pointer-events: none;
 }
 @keyframes turn {
     from {

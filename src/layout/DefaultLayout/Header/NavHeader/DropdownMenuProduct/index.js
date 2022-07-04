@@ -5,6 +5,7 @@ import clsx from 'clsx';
 import NumberFormat from 'react-number-format';
 import { fetchCategoryProducts } from '../../../../../redux/actions/categoryProduct';
 import productApi from '../../../../../api/productApi';
+import categoryProductApi from '../../../../../api/categoryProductApi';
 import styles from './DropdownMenuProduct.module.css';
 const DropdownMenuProduct = ({ mobile, active }) => {
     const [productList, setProductList] = useState([]);

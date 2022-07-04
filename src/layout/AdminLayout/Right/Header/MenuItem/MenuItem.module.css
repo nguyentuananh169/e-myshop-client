@@ -1,0 +1,116 @@
+.wrapper {
+    color: #d0d2d6;
+    font-size: 14px;
+    position: relative;
+    height: 100%;
+}
+.btn {
+    cursor: pointer;
+}
+.text i {
+    font-size: 21px;
+}
+.text .notification {
+    position: absolute;
+    right: -10px;
+    top: -10px;
+    padding: 5px 7px;
+    background-color: #665ed4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.text a {
+    color: #d0d2d6;
+    text-decoration: none;
+}
+/*  */
+.user {
+    display: flex;
+    align-items: center;
+}
+.user .name {
+    padding-right: 5px;
+}
+.user .name p {
+    text-align: right;
+}
+.user .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.user .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* subMenu */
+@keyframes slideUpTop {
+    from {
+        top: calc(100% + 40px);
+        opacity: 0.5;
+    }
+    to {
+        top: calc(100% + 30px);
+        opacity: 1;
+    }
+}
+.subMenu {
+    position: absolute;
+    top: calc(100% + 30px);
+    right: -3px;
+    min-width: 150px;
+    width: auto;
+    height: auto;
+    background-color: #283046;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+    display: none;
+    animation: slideUpTop 0.3s linear;
+    padding: 10px 0;
+}
+.subMenu.show {
+    display: block;
+}
+.subMenu::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    right: 7px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent transparent #283046 transparent;
+}
+.subMenu li {
+    width: 100%;
+    list-style: none;
+}
+.subMenu li.borderTop {
+    border-top: 1px solid #6e6b7b;
+}
+.subMenu a {
+    display: inline-block;
+    color: #d0d2d6;
+    width: 100%;
+    padding: 10px 20px;
+}
+.subMenu a i {
+    margin-right: 5px;
+    font-size: 14px;
+}
+.subMenu li:hover a {
+    background-color: #7367ef;
+    color: #fff;
+}
+@media only screen and (max-width: 420px) {
+    .user .name {
+        display: none;
+    }
+}

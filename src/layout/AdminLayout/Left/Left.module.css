@@ -9,7 +9,7 @@
     flex-direction: column;
     overflow-x: hidden;
     transition: width 0.3s linear;
-    z-index: 9;
+    z-index: 99;
 }
 .wrapper.collapse {
     width: 100px;
