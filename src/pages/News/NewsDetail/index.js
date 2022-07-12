@@ -8,6 +8,7 @@ import LoadingBox from '../../../components/LoadingBox';
 import styles from './NewsDetail.module.css';
 import noAvt from '../../../assets/img/icon/no-avatar.jpg';
 import NewsRealted from './NewsRelated';
+import NewsContent from '../../../components/NewsContent';
 
 function NewsDetail() {
     const [isLoading1, setLoading1] = useState(true);
@@ -67,48 +68,7 @@ function NewsDetail() {
                         {isLoading1 ? (
                             <LoadingBox text="Đang tải bài viết..." />
                         ) : (
-                            <>
-                                <div className={clsx(styles.title)}>
-                                    <h4>{dataNews.news_title}</h4>
-                                </div>
-                                <div className={clsx(styles.author)}>
-                                    <div className={clsx(styles.txt1)}>
-                                        <img
-                                            src={
-                                                dataNews.user_avatar
-                                                    ? `${dataNews.baseURLImgUser}${dataNews.user_avatar}`
-                                                    : noAvt
-                                            }
-                                            alt=""
-                                        />
-                                        <span className={clsx(styles.userName)}>
-                                            {dataNews.user_name}
-                                        </span>
-                                    </div>
-                                    <div className={clsx(styles.txt2)}>
-                                        <span className={clsx(styles.time)}>
-                                            <i className="fa fa-clock-o"></i>
-                                            {dataNews.news_created_at}
-                                        </span>
-                                        <span className={clsx(styles.views)}>
-                                            <i className="fa fa-eye"></i>
-                                            <NumberFormat
-                                                value={dataNews.news_views}
-                                                displayType={'text'}
-                                                thousandSeparator={true}
-                                            />
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className={clsx(styles.summary)}>
-                                    <strong>{dataNews.news_summary}</strong>
-                                </div>
-                                <div className={clsx(styles.content)}>
-                                    <div
-                                        dangerouslySetInnerHTML={{ __html: dataNews.news_content }}
-                                    ></div>
-                                </div>
-                            </>
+                            <NewsContent item={dataNews} />
                         )}
                     </div>
                 </div>

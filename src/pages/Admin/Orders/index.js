@@ -44,7 +44,6 @@ function Orders() {
             limit,
             page,
         };
-        console.log(data);
         setLoading(true);
         const response = await ordersApi.search(data);
         setLoading(false);

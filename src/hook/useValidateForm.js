@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-const useForm = (validates = [], callback) => {
+const useValidateForm = (validates = [], callback) => {
     const objectRules = {
         isRequired: (initial, value) => {
             if (!initial) {
@@ -7,7 +7,7 @@ const useForm = (validates = [], callback) => {
             }
             if (typeof value === 'string') {
                 const formatValue = value.trim();
-                if (!formatValue) {
+                if (formatValue === '') {
                     return 'Trường này không được để trống';
                 }
             } else {
@@ -69,25 +69,23 @@ const useForm = (validates = [], callback) => {
             }
             const formatValue = value.trim();
             if (initial < formatValue.length) {
-                return `Nội dung phải nhỏ hơn ${initial} ký tự`;
+                return `Nội dung phải nhỏ hơn hoặc bằng ${initial} ký tự`;
             }
         },
         minNumber: (initial, value) => {
-            if (!initial || !value) {
+            if (value === '') {
                 return;
             }
-            const formatValue = value.trim();
-            if (initial > formatValue) {
-                return `Giá trị phải lớn hơn ${initial}`;
+            if (initial > value) {
+                return `Giá trị phải lớn hơn hoặc bằng ${initial}`;
             }
         },
         maxNumber: (initial, value) => {
-            if (!initial || !value) {
+            if (value === '') {
                 return;
             }
-            const formatValue = value.trim();
-            if (initial < formatValue) {
-                return `Giá trị phải nhỏ hơn ${initial}`;
+            if (initial < value) {
+                return `Giá trị phải nhỏ hơn hoặc bằng ${initial}`;
             }
         },
         isFileImg: (initial, file) => {
@@ -121,77 +119,60 @@ const useForm = (validates = [], callback) => {
             }
         },
         alike: (initial, value) => {
-            const initialValue = values[initial];
-            if (initialValue !== value) {
+            if (!initial) {
+                return;
+            }
+            if (initial !== value) {
                 return `Nội dung không trùng khớp`;
             }
         },
     };
-    const [values, setValues] = useState({});
+    const [count, setCount] = useState(0);
     const [errors, setErrors] = useState({});
-    const [typeAction, setTypeAction] = useState('');
-    let error2 = {};
+    const [isSubmit, setSubmit] = useState(false);
     useEffect(() => {
-        if (Object.keys(errors).length === 0 && typeAction === 'submit') {
+        if (Object.keys(errors).length === 0 && isSubmit) {
             callback();
         }
-    });
-    const formChange = (name, value) => {
+    }, [count]);
+    const removeError = (name) => {
         const newObj = errors;
         delete newObj[name];
-        setTypeAction('change');
-        setValues({ ...values, [name]: value });
         setErrors(newObj);
     };
     const invalid = (name, value) => {
-        setTypeAction('invalid');
-        setValues((state) => ({ ...state, [name]: value }));
         const validate = validates.filter((item) => item.name === name);
-        const rules = Object.keys(validate[0].rules);
-        for (let item of rules) {
-            let messageError = objectRules[item](validate[0].rules[item], value);
-            if (messageError) {
-                setErrors((state) => ({ ...state, [name]: messageError }));
-                error2 = { ...error2, [name]: messageError };
-                break;
-            } else {
-                setErrors((state) => {
-                    const newObj = state;
-                    delete newObj[name];
-                    return newObj;
-                });
-                const newObj = error2;
-                delete newObj[name];
-                error2 = newObj;
+        if (validate.length > 0) {
+            const rules = Object.keys(validate[0].rules);
+            for (let item of rules) {
+                let messageError = objectRules[item](validate[0].rules[item], value);
+                if (messageError) {
+                    setErrors((state) => ({ ...state, [name]: messageError }));
+                    break;
+                } else {
+                    setErrors((state) => {
+                        const newObj = state;
+                        delete newObj[name];
+                        return newObj;
+                    });
+                }
             }
         }
     };
-    const formSubmit = (e) => {
+    const formSubmit = (e, values) => {
         e.preventDefault();
-        for (let i = 0; i < e.target.elements.length; i++) {
-            if (e.target.elements[i].localName === 'input') {
-                if (e.target.elements[i].attributes.type.value === 'file') {
-                    invalid(e.target.elements[i].name, e.target.elements[i].files);
-                } else {
-                    invalid(e.target.elements[i].name, e.target.elements[i].value);
-                }
-            } else if (e.target.elements[i].localName === 'select') {
-                invalid(
-                    e.target.elements[i].name,
-                    e.target.elements[i].options[e.target.elements[i].options.selectedIndex].value,
-                );
-            } else if (e.target.elements[i].localName === 'textarea') {
-                invalid(e.target.elements[i].name, e.target.elements[i].value);
-            }
+        const array = Object.keys(values);
+        for (let item of array) {
+            invalid(item, values[item]);
         }
-        setTypeAction('submit');
+        setSubmit(true);
+        setCount(count + 1);
     };
     return {
-        values,
         errors,
-        formChange,
         invalid,
+        removeError,
         formSubmit,
     };
 };
-export default useForm;
+export default useValidateForm;

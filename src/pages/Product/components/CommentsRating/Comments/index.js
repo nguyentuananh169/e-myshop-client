@@ -25,7 +25,7 @@ function Comments({ proId, proName, active }) {
             page: valuePage,
             limit: valueLimit,
         };
-        const response = await commentsApi.show(params);
+        const response = await commentsApi.showByProId(params);
         setCommentList(response.commentsList);
         setPage(response.page);
         setTotalPage(response.totalPage);

@@ -11,9 +11,6 @@
 .wrapper:not(.noBorderRadius) {
     border-radius: 5px;
 }
-.wrapper:hover {
-    box-shadow: 0 0 5px #ccc;
-}
 .wrapper i {
     margin-right: 5px;
 }
@@ -80,7 +77,7 @@
 }
 /* */
 .outline:not(.active) {
-    background-color: #fff;
+    background-color: transparent;
 }
 .outline.success:not(.active),
 .text.success:not(.active) {

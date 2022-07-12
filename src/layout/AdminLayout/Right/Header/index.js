@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import MenuItem from './MenuItem';
@@ -22,11 +21,11 @@ function Header({ collapse, handleSetShowMenuMobile }) {
             level: 'Admin',
             userAvatar: user.user_avatar ? `${user.baseURLImg}${user.user_avatar}` : noAvt,
             childrens: [
-                { icon: 'fa fa-user-o', title: 'Thông tin', to: '#' },
+                { icon: 'fa fa-user-o', title: 'Thông tin', to: '/bang-dieu-khien/thong-tin' },
                 { icon: 'fa fa-envelope-o', title: 'Hộp thư', to: '#' },
                 { icon: 'fa fa-bell-o', title: 'Thông báo', to: '#' },
                 { icon: 'fa fa-cog', title: 'Cài đặt', to: '#' },
-                { icon: 'fa fa-sign-out', title: 'Đăng xuất', to: '#' },
+                { icon: 'fa fa-sign-out', title: 'Đăng xuất', to: '/dang-xuat' },
             ],
         },
     ];

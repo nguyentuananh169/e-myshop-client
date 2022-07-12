@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { useSliceString } from '../../../../hook/useSliceString';
+import useSliceString from '../../../../hook/useSliceString';
 import Button from '../../../../components/Button';
 import styles from './NewsItem.module.css';
 import noAvt from '../../../../assets/img/icon/no-avatar.jpg';

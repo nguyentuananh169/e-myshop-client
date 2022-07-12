@@ -108,7 +108,7 @@ function CatgoryProduct() {
         const data = new FormData();
         data.append('_cate_id', dataForm.cateId);
         data.append('_name', dataForm.name);
-        data.append('_img', dataForm.img);
+        data.append('_img', dataForm.img[0]);
         setLoadingBtn(true);
         const response = await brandProductApi.add(data);
         setLoadingBtn(false);
@@ -129,7 +129,7 @@ function CatgoryProduct() {
         data.append('_id', dataForm.id);
         data.append('_cate_id', dataForm.cateId);
         data.append('_name', dataForm.name);
-        data.append('_img', dataForm.img);
+        data.append('_img', dataForm.img[0]);
         setLoadingBtn(true);
         const response = await brandProductApi.update(data);
         setLoadingBtn(false);

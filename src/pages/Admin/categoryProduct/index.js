@@ -89,7 +89,7 @@ function CatgoryProduct() {
     const handleAdd = async () => {
         const params = new FormData();
         params.append('_name', stateForm.name);
-        params.append('_img', stateForm.img);
+        params.append('_img', stateForm.img[0]);
         params.append('_status', stateForm.status);
         setLoadingBtn(true);
         const response = await categoryProductApi.add(params);
@@ -110,7 +110,7 @@ function CatgoryProduct() {
         const params = new FormData();
         params.append('_id', stateForm.id);
         params.append('_name', stateForm.name);
-        params.append('_img', stateForm.img);
+        params.append('_img', stateForm.img[0]);
         params.append('_status', stateForm.status);
         setLoadingBtn(true);
         const response = await categoryProductApi.update(params);
@@ -190,7 +190,7 @@ function CatgoryProduct() {
                                 <th>#</th>
                                 <th>Tên danh mục</th>
                                 <th>Hình ảnh</th>
-                                <th>Trạng thái</th>
+                                <th>Trang chủ</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày cập nhật cuối</th>
                                 <th>Hành động</th>

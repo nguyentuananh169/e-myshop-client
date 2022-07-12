@@ -1,0 +1,73 @@
+.notfound {
+    width: 100%;
+    height: 100vh;
+    background-color: #283046;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.notfound button.goBack {
+    padding: 7px 9px;
+    outline: none;
+    color: #fff;
+    border: 2px solid #030005;
+    background-color: #030005;
+    transition: all 0.2s linear;
+    cursor: pointer;
+    font-size: 14px;
+}
+.notfound button.goBack:hover {
+    color: #8400ff;
+    border: 2px solid #8400ff;
+}
+.notfound button.goBack i {
+    margin-right: 5px;
+}
+.text {
+    position: relative;
+}
+.text strong {
+    font-size: 224px;
+    color: #030005;
+    font-weight: 900;
+    text-shadow: -1px -1px 0 #8400ff, 1px 1px 0 #ff005a;
+    letter-spacing: -20px;
+}
+.text span {
+    position: absolute;
+    color: #fff;
+    width: 100%;
+    left: 37px;
+    top: 60%;
+    font-size: 35px;
+    font-weight: 700;
+    text-shadow: 0 2px 0 #8400ff;
+}
+.notfound a {
+    display: inline-block;
+    width: 200px;
+    height: 43px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #030005;
+    background-color: #030005;
+    transition: all 0.2s linear;
+}
+.notfound a:hover {
+    color: #8400ff;
+    border: 2px solid #8400ff;
+}
+@media only screen and (max-width: 480px) {
+    .text strong {
+        font-size: 160px;
+    }
+    .text span {
+        font-size: 22px;
+    }
+}

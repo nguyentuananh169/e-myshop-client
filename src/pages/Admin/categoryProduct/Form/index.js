@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Modal from '../../components/Modal';
 import Button from '../../../../components/Button';
-import { invalidInput, submitForm } from '../../../../hook/validationForm';
+import useValidateForm from '../../../../hook/useValidateForm';
 import styles from './Form.module.css';
 function Form({
     isLoadingBtn,
@@ -14,66 +14,38 @@ function Form({
 }) {
     let validates = [
         {
-            inputName: 'name',
-            rules: { required: '', maxLength: 30 },
+            name: 'name',
+            rules: { isRequired: true, maxLength: 30 },
         },
         {
-            inputName: 'img',
-            rules: { required: '', fileImg: '' },
+            name: 'img',
+            rules: { isRequired: true, isFileImg: true },
         },
         {
-            inputName: 'status',
-            rules: { required: '' },
+            name: 'status',
+            rules: { isRequired: true },
         },
     ];
     if (stateForm.typeAction === 'update') {
         validates[1] = {
-            inputName: 'img',
-            rules: { fileImg: '' },
+            name: 'img',
+            rules: { isFileImg: true },
         };
     }
-    const handleChange = (e) => {
-        const formGroupElement = e.target.parentElement;
-        if (e.target.attributes.type.value === 'file') {
-            handleSetStateForm({ ...stateForm, [e.target.name]: e.target.files[0] });
-        } else {
-            handleSetStateForm({ ...stateForm, [e.target.name]: e.target.value });
-        }
-        formGroupElement.classList.remove(clsx(styles.invalid));
-        formGroupElement.querySelector('.message').innerText = '';
-    };
-    const handleBlur = (element) => {
-        const valide = validates.filter((item) => item.inputName === element.name);
-        let message = invalidInput(valide[0].inputName, element.value, valide[0].rules);
-        const formGroupElement = element.parentElement;
-        if (message) {
-            formGroupElement.classList.add(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = message.message;
-        } else {
-            formGroupElement.classList.remove(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = '';
-        }
-    };
     const handleSubmit = async (e) => {
-        e.preventDefault();
         if (isLoadingBtn) {
             return;
         }
-        const elements = e.target.elements;
-        const messageError = submitForm(elements, validates);
-        if (messageError.length > 0) {
-            for (let i = 0; i < messageError.length; i++) {
-                const formGroupElement = elements[messageError[i].name].parentElement;
-                formGroupElement.classList.add(clsx(styles.invalid));
-                formGroupElement.querySelector('.message').innerText = messageError[i].message;
-            }
+        if (stateForm.typeAction === 'add') {
+            handleAdd();
         } else {
-            if (stateForm.typeAction === 'add') {
-                handleAdd();
-            } else {
-                handleUpdate();
-            }
+            handleUpdate();
         }
+    };
+    const { errors, removeError, formSubmit, invalid } = useValidateForm(validates, handleSubmit);
+    const handleChange = (name, value) => {
+        handleSetStateForm({ ...stateForm, [name]: value });
+        removeError(name);
     };
     return (
         <Modal
@@ -93,7 +65,7 @@ function Form({
                 borderRadius: 0,
             }}
         >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => formSubmit(e, stateForm)}>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth" htmlFor="name">
                         Tên danh mục:
@@ -104,10 +76,10 @@ function Form({
                         name="name"
                         placeholder="Nhập tên danh mục"
                         value={stateForm.name}
-                        onChange={handleChange}
-                        onBlur={(e) => handleBlur(e.target)}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                        onBlur={(e) => invalid('name', e.target.value)}
                     />
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError, 'message')}>{errors.name}</span>
                 </div>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth" htmlFor="img">
@@ -117,10 +89,10 @@ function Form({
                         type="file"
                         id="img"
                         name="img"
-                        onChange={handleChange}
-                        onBlur={(e) => handleBlur(e.target)}
+                        onChange={(e) => handleChange('img', e.target.files)}
+                        onBlur={(e) => invalid('img', e.target.files)}
                     />
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError, 'message')}>{errors.img}</span>
                     {stateForm.typeAction === 'update' && (
                         <i className={clsx(styles.note)}>Để trống hình ảnh nếu không muốn xửa</i>
                     )}
@@ -134,17 +106,22 @@ function Form({
                         name="status"
                         value={stateForm.status}
                         onChange={(e) =>
-                            handleSetStateForm({
-                                ...stateForm,
-                                status: e.target.options[e.target.options.selectedIndex].value,
-                            })
+                            handleChange(
+                                'status',
+                                e.target.options[e.target.options.selectedIndex].value,
+                            )
                         }
-                        onBlur={(e) => handleBlur(e.target)}
+                        onBlur={(e) =>
+                            invalid(
+                                'status',
+                                e.target.options[e.target.options.selectedIndex].value,
+                            )
+                        }
                     >
                         <option value="0">Hiển thị</option>
                         <option value="1">Ẩn</option>
                     </select>
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError, 'message')}>{errors.status}</span>
                 </div>
                 <div className={clsx(styles.formGroup)}>
                     {stateForm.typeAction === 'add' ? (

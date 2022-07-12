@@ -65,15 +65,11 @@
     margin-top: 20px;
 }
 .errorMessage {
-    display: none;
     width: 100%;
     font-size: 12px;
     color: #fe2e2e;
     margin-top: 10px;
     margin-left: 220px;
-}
-.invalid .errorMessage {
-    display: block;
 }
 .note {
     display: inline-block;

@@ -1,0 +1,32 @@
+.infoCmt {
+    display: flex;
+}
+.avt img {
+    border-radius: 50%;
+    overflow: hidden;
+}
+.info {
+    flex: 1;
+    text-align: left;
+    padding-left: 20px;
+}
+.star i {
+    color: #ccc;
+    font-size: 16px;
+}
+.star i.color {
+    color: #fed330;
+}
+.star i + i {
+    margin-left: 5px;
+}
+.mgt {
+    margin-top: 10px;
+}
+.link a {
+    color: #0168fa;
+}
+/*  */
+.listComment {
+    color: #b4b7bd;
+}

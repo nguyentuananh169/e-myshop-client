@@ -1,0 +1,49 @@
+.dflex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.formGroup + .formGroup:not(.w47) {
+    margin-top: 20px;
+}
+.formGroup.w47 {
+    width: 47%;
+}
+.formGroup.mgt {
+    margin-top: 20px;
+}
+.formGroup.btnSubmit {
+    text-align: center;
+}
+.formGroup label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #f4f4f4;
+}
+.formGroup input,
+.formGroup input:focus,
+.formGroup textarea,
+.formGroup textarea:focus {
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-radius: 0;
+    padding: 0;
+}
+.formGroup textarea {
+    min-height: 80px;
+}
+.messageError {
+    display: block;
+    margin-top: 10px;
+    color: red;
+    font-size: 12px;
+}
+@media only screen and (max-width: 480px) {
+    .formGroup.w47 {
+        width: 100%;
+    }
+    .formGroup.w47 + .formGroup.w47 {
+        margin-top: 20px;
+    }
+}

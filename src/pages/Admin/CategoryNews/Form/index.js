@@ -1,13 +1,12 @@
 import clsx from 'clsx';
 import Modal from '../../components/Modal';
 import Button from '../../../../components/Button';
-import { invalidInput, submitForm } from '../../../../hook/validationForm';
-import useForm from '../../../../hook/useForm';
+import useValidateForm from '../../../../hook/useValidateForm';
 import styles from './Form.module.css';
 function Form({
     isLoadingBtn,
     dataForm,
-    // handleSetStateForm,
+    handleSetDataForm,
     isShowForm,
     handleAdd,
     handleShowForm,
@@ -16,24 +15,23 @@ function Form({
     let validates = [
         {
             name: 'name',
-            rules: { isRequired: true, maxLength: 30 },
-        },
-        {
-            name: 'status',
-            rules: { isRequired: true },
+            rules: { isRequired: true, minLength: 6, maxLength: 30 },
         },
     ];
-    const { errors, values, formChange, invalid, formSubmit } = useForm(validates);
-    const handleSubmit = (values1) => {
-        // if (isLoadingBtn) {
-        //     return;
-        // }
-        // if (dataForm.typeAction === 'add') {
-        //     handleAdd(values);
-        // } else if (dataForm.typeAction === 'update') {
-        //     handleUpdate(values);
-        // }
-        console.log(values1);
+    const handleSubmit = () => {
+        if (isLoadingBtn) {
+            return;
+        }
+        if (dataForm.typeAction === 'add') {
+            handleAdd();
+        } else if (dataForm.typeAction === 'update') {
+            handleUpdate();
+        }
+    };
+    const { errors, removeError, invalid, formSubmit } = useValidateForm(validates, handleSubmit);
+    const handleChange = (name, value) => {
+        handleSetDataForm({ ...dataForm, [name]: value });
+        removeError(name);
     };
     return (
         <Modal
@@ -53,7 +51,7 @@ function Form({
                 borderRadius: 0,
             }}
         >
-            <form onSubmit={(e) => formSubmit(e, handleSubmit)}>
+            <form onSubmit={(e) => formSubmit(e, dataForm)}>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth" htmlFor="name">
                         Tên danh mục:
@@ -63,9 +61,8 @@ function Form({
                         id="name"
                         name="name"
                         placeholder="Nhập tên danh mục"
-                        defaultValue={dataForm.name}
-                        // value={stateForm.name}
-                        onChange={(e) => formChange('name', e.target.value)}
+                        value={dataForm.name}
+                        onChange={(e) => handleChange('name', e.target.value)}
                         onBlur={(e) => invalid('name', e.target.value)}
                     />
                     <span className={clsx(styles.messageError)}>{errors.name}</span>
@@ -77,10 +74,9 @@ function Form({
                     <select
                         id="status"
                         name="status"
-                        defaultValue={dataForm.status}
-                        // value={stateForm.status}
+                        value={dataForm.status}
                         onChange={(e) =>
-                            formChange(
+                            handleChange(
                                 'status',
                                 e.target.options[e.target.options.selectedIndex].value,
                             )

@@ -46,7 +46,6 @@ function CategoryNews() {
         };
         setLoading(true);
         const response = await categoryNewsApi.search(data);
-        console.log(response);
         setLoading(false);
         setCategoryNewsList(response.dataCate);
         setParams({
@@ -97,14 +96,17 @@ function CategoryNews() {
     const handleShowForm = () => {
         setShowForm(!isShowForm);
     };
+    const handleSetDataForm = (data) => {
+        setDataForm(data);
+    };
     const handleShowFormAdd = () => {
-        setDataForm({ typeAction: 'add', id: '', name: '', status: '' });
+        setDataForm({ typeAction: 'add', id: '', name: '', status: '0' });
         handleShowForm();
     };
-    const handleAdd = async (values) => {
+    const handleAdd = async () => {
         const data = new FormData();
-        data.append('_name', values.name);
-        data.append('_status', values.status);
+        data.append('_name', dataForm.name);
+        data.append('_status', dataForm.status);
         setLoadingBtn(true);
         const response = await categoryNewsApi.add(data);
         setLoadingBtn(false);
@@ -119,11 +121,11 @@ function CategoryNews() {
         setDataForm({ typeAction: 'update', id: valueId, name: valueName, status: valueStatus });
         handleShowForm();
     };
-    const handleUpdate = async (values) => {
+    const handleUpdate = async () => {
         const data = new FormData();
         data.append('_id', dataForm.id);
-        data.append('_name', values.name);
-        data.append('_status', values.status);
+        data.append('_name', dataForm.name);
+        data.append('_status', dataForm.status);
         setLoadingBtn(true);
         const response = await categoryNewsApi.update(data);
         setLoadingBtn(false);
@@ -133,6 +135,17 @@ function CategoryNews() {
         handleShowForm();
         dispatch(addNewToastMessage('success', 'Thành công', response[0].mes));
         fetchCategoryNews(params.name, params.status, params.limit, params.page);
+    };
+    const handleDelete = async (id, name) => {
+        if (window.confirm(`Bạn có chắc muốn xóa danh mục "${name}"`)) {
+            setLoading(true);
+            const response = await categoryNewsApi.delete(id);
+            if (response[0].error === 1) {
+                return dispatch(addNewToastMessage('error', 'Thất bại', response[0].mes));
+            }
+            dispatch(addNewToastMessage('success', 'Thành công', response[0].mes));
+            fetchCategoryNews(params.name, params.status, params.limit, params.page);
+        }
     };
     const path = [
         {
@@ -149,6 +162,7 @@ function CategoryNews() {
                         isLoadingBtn={isLoadingBtn}
                         isShowForm={isShowForm}
                         dataForm={dataForm}
+                        handleSetDataForm={handleSetDataForm}
                         handleUpdate={handleUpdate}
                         handleShowForm={handleShowForm}
                         handleAdd={handleAdd}
@@ -171,7 +185,7 @@ function CategoryNews() {
                             <tr>
                                 <th>#</th>
                                 <th>Tên danh mục</th>
-                                <th>Trạng thái</th>
+                                <th>Trang chủ</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày cập nhật cuối</th>
                                 <th>Hành động</th>
@@ -186,6 +200,7 @@ function CategoryNews() {
                                         isLoadingBtn={isLoadingBtn}
                                         handleChangeStatus={handleChangeStatus}
                                         handleShowFormUpdate={handleShowFormUpdate}
+                                        handleDelete={handleDelete}
                                     />
                                 ))}
                         </tbody>

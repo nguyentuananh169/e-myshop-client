@@ -93,4 +93,9 @@
     .item {
         width: 100%;
     }
+    .category a {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
 }

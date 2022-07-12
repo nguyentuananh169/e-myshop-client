@@ -1,6 +1,6 @@
 import NumberFormat from 'react-number-format';
 import Button from '../../../components/Button';
-import { useSliceString } from '../../../hook/useSliceString';
+import useSliceString from '../../../hook/useSliceString';
 function Item({
     stt,
     item,

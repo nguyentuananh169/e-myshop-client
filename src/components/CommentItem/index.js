@@ -7,13 +7,13 @@ import Form from '../../pages/Product/components/CommentsRating/components/Form'
 import { useSelector } from 'react-redux';
 function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRating }) {
     const [isShowForm, setShowForm] = useState(false);
-    let levelElement;
+    let levelElement1;
     switch (data.user_level) {
-        case '1':
-            levelElement = 'Kiểm duyệt viên';
-            break;
         case '2':
-            levelElement = 'Quản trị viên';
+            levelElement1 = 'Kiểm duyệt viên';
+            break;
+        case '3':
+            levelElement1 = 'Quản trị viên';
             break;
         default:
             break;
@@ -33,10 +33,10 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
             <div className={clsx(styles.info)}>
                 <div className={clsx(styles.name)}>
                     <strong>{data.user_name}</strong>
-                    {levelElement ? (
+                    {levelElement1 ? (
                         <span>
                             <i className="fa fa-check-circle"></i>
-                            {levelElement}
+                            {levelElement1}
                         </span>
                     ) : null}
                 </div>
@@ -55,7 +55,7 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
                 <div className={clsx(styles.content)}>
                     <span>{data.cmt_content || data.r_content}</span>
                 </div>
-                {checkLogin ? (
+                {checkLogin && (
                     <Button
                         small
                         outline
@@ -73,7 +73,7 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
                             </>
                         )}
                     </Button>
-                ) : null}
+                )}
 
                 {/*  */}
 
@@ -106,10 +106,11 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
                             <div className={clsx(styles.info)}>
                                 <div className={clsx(styles.name)}>
                                     <strong>{item.user_name}</strong>
-                                    {levelElement ? (
+                                    {item.user_level > 1 ? (
                                         <span>
                                             <i className="fa fa-check-circle"></i>
-                                            {levelElement}
+                                            {item.user_level === '2' && 'Kiểm duyệt viên'}
+                                            {item.user_level === '3' && 'Quản trị viên'}
                                         </span>
                                     ) : null}
                                 </div>

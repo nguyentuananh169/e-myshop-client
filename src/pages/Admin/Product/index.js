@@ -149,7 +149,7 @@ function Product() {
         data.append('_qty', Number(dataForm.qty));
         data.append('_price', Number(dataForm.price));
         data.append('_sale', Number(dataForm.sale));
-        data.append('_img', dataForm.img);
+        data.append('_img', dataForm.img[0]);
         for (let i = 0; i < dataForm.imgs.length; i++) {
             data.append('_imgs[]', dataForm.imgs[i]);
         }

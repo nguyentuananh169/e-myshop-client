@@ -1,29 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
 import Button from '../../../components/Button';
-import { addNewToastMessage } from '../../../redux/actions/toastMessage';
 import styles from './LayoutRight.module.css';
 function LayoutRight() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
     const cart = useSelector((state) => state.cart);
-    const handleNextPage = () => {
-        if (
-            cart.user.user_name &&
-            cart.user.user_email &&
-            cart.user.user_phone &&
-            cart.user.city_id &&
-            cart.user.district_id &&
-            cart.user.commune_id &&
-            cart.user.user_address
-        ) {
-            navigate('/checkout');
-        } else {
-            dispatch(addNewToastMessage('error', 'Thất bại', 'Bạn chưa nhập đủ thông tin'));
-        }
-    };
     return (
         <div className={clsx(styles.wrapper)}>
             <div className={clsx(styles.bodyTable)}>

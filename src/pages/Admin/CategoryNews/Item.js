@@ -1,5 +1,5 @@
 import Button from '../../../components/Button';
-function Item({ stt, item, isLoadingBtn, handleChangeStatus, handleShowFormUpdate }) {
+function Item({ stt, item, isLoadingBtn, handleChangeStatus, handleShowFormUpdate, handleDelete }) {
     return (
         <tr>
             <td>{stt}</td>
@@ -28,9 +28,7 @@ function Item({ stt, item, isLoadingBtn, handleChangeStatus, handleShowFormUpdat
                     <i className="fa fa-pencil-square-o"></i>
                     <span>Xửa danh mục</span>
                 </label>
-                <label
-                // onClick={() => handleDelete(item.id, item.name)}
-                >
+                <label onClick={() => handleDelete(item.id, item.name)}>
                     <i className="fa fa-times"></i>
                     <span>Xóa danh mục</span>
                 </label>

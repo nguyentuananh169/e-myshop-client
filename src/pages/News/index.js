@@ -33,7 +33,7 @@ function News() {
     const fetchNews = async (page = 1, limit = 4) => {
         const params = { page, limit };
         setLoading(true);
-        const response = await newsApi.getAll(params);
+        const response = await newsApi.getByStatus(params);
         setLoading(false);
         setNewsList(response.dataNews);
         setPage(response.page);

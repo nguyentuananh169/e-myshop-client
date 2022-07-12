@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ScrollTop from './components/ScrollTop';
 import ToastMessage from './components/ToastMessage';
-import { publicRoutes, dashboardRoutes, adminRoutes } from './routes';
+import { publicRoutes, dashboardRoutes, adminRoutes, errorRoutes } from './routes';
 
 import { checkAuthLogin } from './redux/actions/auth';
 import LoadingCheckLogin from './components/LoadingCheckLogin';
@@ -53,6 +53,21 @@ function App() {
                     );
                 })}
                 {adminRoutes.map((route, index) => {
+                    const Page = route.component;
+                    const Layout = route.layout || Fragment;
+                    return (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            element={
+                                <Layout>
+                                    <Page />
+                                </Layout>
+                            }
+                        />
+                    );
+                })}
+                {errorRoutes.map((route, index) => {
                     const Page = route.component;
                     const Layout = route.layout || Fragment;
                     return (

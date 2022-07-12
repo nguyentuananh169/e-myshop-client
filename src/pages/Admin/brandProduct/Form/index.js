@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Modal from '../../components/Modal';
 import Button from '../../../../components/Button';
-import { invalidInput, submitForm } from '../../../../hook/validationForm';
+import useValidateForm from '../../../../hook/useValidateForm';
 import styles from './Form.module.css';
 function Form({
     isLoadingBtn,
@@ -15,66 +15,38 @@ function Form({
 }) {
     let validates = [
         {
-            inputName: 'categoryId',
-            rules: { required: '' },
+            name: 'cateId',
+            rules: { isRequired: true, maxLength: 100 },
         },
         {
-            inputName: 'name',
-            rules: { required: '', maxLength: 30 },
+            name: 'name',
+            rules: { isRequired: true, maxLength: 30 },
         },
         {
-            inputName: 'img',
-            rules: { required: '', fileImg: '' },
+            name: 'img',
+            rules: { isRequired: true, isFileImg: true },
         },
     ];
     if (dataForm.typeAction === 'update') {
         validates[2] = {
-            inputName: 'img',
-            rules: { fileImg: '' },
+            name: 'img',
+            rules: { isFileImg: true },
         };
     }
-    const handleChange = (e) => {
-        const formGroupElement = e.target.parentElement;
-        if (e.target.attributes.type.value === 'file') {
-            handleSetDataForm({ ...dataForm, [e.target.name]: e.target.files[0] });
-        } else {
-            handleSetDataForm({ ...dataForm, [e.target.name]: e.target.value });
-        }
-        formGroupElement.classList.remove(clsx(styles.invalid));
-        formGroupElement.querySelector('.message').innerText = '';
-    };
-    const handleBlur = (element) => {
-        const valide = validates.filter((item) => item.inputName === element.name);
-        let message = invalidInput(valide[0].inputName, element.value, valide[0].rules);
-        const formGroupElement = element.parentElement;
-        if (message) {
-            formGroupElement.classList.add(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = message.message;
-        } else {
-            formGroupElement.classList.remove(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = '';
-        }
-    };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if (isLoadingBtn) {
             return;
         }
-        const elements = e.target.elements;
-        const messageError = submitForm(elements, validates);
-        if (messageError.length > 0) {
-            for (let i = 0; i < messageError.length; i++) {
-                const formGroupElement = elements[messageError[i].name].parentElement;
-                formGroupElement.classList.add(clsx(styles.invalid));
-                formGroupElement.querySelector('.message').innerText = messageError[i].message;
-            }
+        if (dataForm.typeAction === 'add') {
+            handleAdd();
         } else {
-            if (dataForm.typeAction === 'add') {
-                handleAdd();
-            } else {
-                handleUpdate();
-            }
+            handleUpdate();
         }
+    };
+    const { errors, removeError, formSubmit, invalid } = useValidateForm(validates, handleSubmit);
+    const handleChange = (name, value) => {
+        handleSetDataForm({ ...dataForm, [name]: value });
+        removeError(name);
     };
     return (
         <Modal
@@ -94,19 +66,24 @@ function Form({
                 borderRadius: 0,
             }}
         >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(e) => formSubmit(e, dataForm)}>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth">Chọn danh mục:</label>
                     <select
-                        name="categoryId"
+                        name="cateId"
                         value={dataForm.cateId}
                         onChange={(e) =>
-                            handleSetDataForm({
-                                ...dataForm,
-                                cateId: e.target.options[e.target.options.selectedIndex].value,
-                            })
+                            handleChange(
+                                'cateId',
+                                e.target.options[e.target.options.selectedIndex].value,
+                            )
                         }
-                        onBlur={(e) => handleBlur(e.target)}
+                        onBlur={(e) =>
+                            invalid(
+                                'cateId',
+                                e.target.options[e.target.options.selectedIndex].value,
+                            )
+                        }
                     >
                         <option value="">--- Chọn danh mục ---</option>
                         {categoryList.map((item) => (
@@ -115,7 +92,7 @@ function Form({
                             </option>
                         ))}
                     </select>
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError)}>{errors.cateId}</span>
                 </div>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth" htmlFor="name">
@@ -127,20 +104,20 @@ function Form({
                         name="name"
                         placeholder="Nhập tên thương hiệu"
                         value={dataForm.name}
-                        onChange={handleChange}
-                        onBlur={(e) => handleBlur(e.target)}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                        onBlur={(e) => invalid('name', e.target.value)}
                     />
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError)}>{errors.name}</span>
                 </div>
                 <div className={clsx(styles.formGroup)}>
                     <label data-type="fullWidth">Logo:</label>
                     <input
                         type="file"
                         name="img"
-                        onChange={handleChange}
-                        onBlur={(e) => handleBlur(e.target)}
+                        onChange={(e) => handleChange('img', e.target.files)}
+                        onBlur={(e) => invalid('img', e.target.files)}
                     />
-                    <span className={clsx(styles.messageError, 'message')}></span>
+                    <span className={clsx(styles.messageError)}>{errors.img}</span>
                     {dataForm.typeAction === 'update' && (
                         <i className={clsx(styles.note)}>Để trống hình ảnh nếu không muốn xửa</i>
                     )}

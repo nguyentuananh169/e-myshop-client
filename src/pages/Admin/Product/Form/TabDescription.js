@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import clsx from 'clsx';
 import { Editor } from '@tinymce/tinymce-react';
 import styles from './Form.module.css';
-function TabDescription({ active, dataForm, handleSetDataForm }) {
+function TabDescription({ active, dataForm, handleChange }) {
     const editorRef = useRef(null);
     return (
         <div className={clsx(styles.tabDescription, { [styles.active]: active })}>
@@ -18,9 +18,7 @@ function TabDescription({ active, dataForm, handleSetDataForm }) {
                         'alignleft aligncenter alignright alignjustify | ' +
                         'outdent indent | numlist bullist ',
                 }}
-                onBlur={() =>
-                    handleSetDataForm({ ...dataForm, des: editorRef.current.getContent() })
-                }
+                onBlur={() => handleChange('des', editorRef.current.getContent())}
             />
         </div>
     );

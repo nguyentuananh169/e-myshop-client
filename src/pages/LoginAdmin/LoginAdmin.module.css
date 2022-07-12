@@ -1,0 +1,123 @@
+.loginPage {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/img/background/bg-ad.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.loginPage form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wrapperForm {
+    width: 100%;
+    max-width: 445px;
+    height: 436px;
+    background-color: rgba(255, 255, 255, 0.07);
+    padding: 0 32px;
+    text-align: center;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.3);
+}
+.heading {
+    display: inline-block;
+    width: 100%;
+    margin-top: 66px;
+    margin-bottom: 35px;
+    color: #fff;
+    letter-spacing: 3px;
+    font-size: 18px;
+    text-shadow: 3px 3px 4px #000;
+    font-weight: 300;
+    text-align: center;
+}
+.formGroup {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.formGroup + .formGroup {
+    margin-top: 20px;
+}
+.formGroup input {
+    flex: 1;
+    height: 50px;
+    padding: 0 20px;
+    background-color: rgba(0, 0, 0, 0.16);
+    outline: none;
+    border: 0;
+    border-left: 2px solid #00c6d7;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.4);
+    position: relative;
+    color: #fff;
+}
+.formGroup input::placeholder {
+    color: #fff;
+    letter-spacing: 1px;
+}
+.formGroup label.icon {
+    width: 53px;
+    height: 50px;
+    margin-left: 15px;
+    background-color: #00c6d7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formGroup label.icon i {
+    font-size: 19px;
+    color: #fff;
+}
+.formGroup .messagesError {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    color: #fe2e2e;
+    font-size: 12px;
+    text-align: left;
+}
+.tools {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.rememberMe input {
+    width: 16px;
+    height: 16px;
+    outline: none;
+    border: 0;
+}
+.rememberMe label {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    margin-left: 7px;
+}
+.forgotPassword a {
+    color: #fff;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+.submit button {
+    width: 235px;
+    height: 57px;
+    outline: none;
+    border: 3px solid #8e8e8d;
+    margin-top: 35px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+.submit button:hover {
+    border: 3px solid #00c6d7;
+}

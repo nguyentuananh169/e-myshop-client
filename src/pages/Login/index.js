@@ -7,7 +7,7 @@ import Path from '../../components/Path';
 import authApi from '../../api/authApi';
 import { addNewToastMessage } from '../../redux/actions/toastMessage';
 import { authLogin } from '../../redux/actions/auth';
-import useForm from '../../hook/useForm';
+import useValidateForm from '../../hook/useValidateForm';
 import styles from './Login.module.css';
 function Login() {
     const validates = [
@@ -21,9 +21,12 @@ function Login() {
         },
     ];
     const [isLoading, setLoading] = useState(false);
+    const [values, setValues] = useState({
+        email: '',
+        password: '',
+    });
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { errors, values, invalid, formChange, formSubmit } = useForm(validates);
     const handleSubmit = async () => {
         if (isLoading) {
             return;
@@ -50,6 +53,11 @@ function Login() {
         dispatch(addNewToastMessage('success', 'Đăng nhập thành công', 'Chào mừng bạn'));
         navigate('/', { replace: true });
     };
+    const { errors, invalid, removeError, formSubmit } = useValidateForm(validates, handleSubmit);
+    const handleChange = (name, value) => {
+        setValues({ ...values, [name]: value });
+        removeError(name);
+    };
     const checkLogin = useSelector((state) => state.auth.isAuthentication);
     if (checkLogin) {
         return <Navigate to="/" />;
@@ -64,7 +72,7 @@ function Login() {
         <>
             <Path path={path} />
             <div className="container">
-                <form onSubmit={(e) => formSubmit(e, handleSubmit)}>
+                <form onSubmit={(e) => formSubmit(e, values)}>
                     <div className={clsx(styles.wrapper)}>
                         <h2 className={clsx(styles.heading)}>Đăng nhập</h2>
                         <div className={clsx(styles.form)}>
@@ -78,7 +86,7 @@ function Login() {
                                     type="text"
                                     name="email"
                                     placeholder="Nhập Email ..."
-                                    onChange={(e) => formChange('email', e.target.value)}
+                                    onChange={(e) => handleChange('email', e.target.value)}
                                     onBlur={(e) => invalid('email', e.target.value)}
                                 />
                                 <span className={clsx(styles.errorMessage)}>{errors.email}</span>
@@ -93,7 +101,7 @@ function Login() {
                                     type="password"
                                     name="password"
                                     placeholder="Nhập mật khẩu ..."
-                                    onChange={(e) => formChange('password', e.target.value)}
+                                    onChange={(e) => handleChange('password', e.target.value)}
                                     onBlur={(e) => invalid('password', e.target.value)}
                                 />
                                 <span className={clsx(styles.errorMessage)}>{errors.password}</span>

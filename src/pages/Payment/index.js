@@ -1,66 +1,53 @@
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
+import useValidateForm from '../../hook/useValidateForm';
 import Path from '../../components/Path';
 import styles from './Payment.module.css';
 import LayoutLeft from './LayoutLeft';
 import LayoutRight from './LayoutRight';
-import { submitForm } from '../../hook/validationForm';
-import { addNewToastMessage } from '../../redux/actions/toastMessage';
 
 function Payment() {
     const validates = [
         {
-            inputName: 'user_name',
-            rules: { required: '', minLength: 6, maxLength: 30 },
+            name: 'user_name',
+            rules: { isRequired: true, minLength: 6, maxLength: 30 },
         },
         {
-            inputName: 'user_email',
-            rules: { required: '', email: '' },
+            name: 'user_email',
+            rules: { isRequired: true, isEmail: true },
         },
         {
-            inputName: 'user_phone',
-            rules: { required: '', phoneNumber: 6 },
+            name: 'user_phone',
+            rules: { isRequired: true, isPhoneNumber: true },
         },
         {
-            inputName: 'user_address',
-            rules: { required: '', minLength: 6, maxLength: 255 },
+            name: 'user_address',
+            rules: { isRequired: true, minLength: 6, maxLength: 100 },
         },
         {
-            inputName: 'city_name',
-            rules: { required: '' },
+            name: 'city_id',
+            rules: { isRequired: true },
         },
         {
-            inputName: 'district_name',
-            rules: { required: '' },
+            name: 'district_id',
+            rules: { isRequired: true },
         },
         {
-            inputName: 'commune_name',
-            rules: { required: '' },
+            name: 'commune_id',
+            rules: { isRequired: true },
         },
         {
-            inputName: 'user_note',
+            name: 'user_note',
             rules: { maxLength: 100 },
         },
     ];
     const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const elements = e.target.elements;
-        const messageError = submitForm(elements, validates);
-        if (messageError.length > 0) {
-            dispatch(
-                addNewToastMessage('error', 'Thất bại', 'Bạn cần điền đủ và chính xác thông tin'),
-            );
-        } else {
-            navigate('/thu-tuc-thanh-toan');
-        }
+    const handleSubmit = () => {
+        navigate('/thu-tuc-thanh-toan');
     };
-    if (cart.cartItems.length === 0) {
-        return <Navigate to="/" />;
-    }
+    const { errors, removeError, formSubmit, invalid } = useValidateForm(validates, handleSubmit);
     const path = [
         {
             name: 'Giỏ hàng',
@@ -71,12 +58,20 @@ function Payment() {
             url: '/thanh-toan',
         },
     ];
+    if (cart.cartItems.length === 0) {
+        return <Navigate to="/" />;
+    }
     return (
         <>
             <Path path={path} />
             <div className="container">
-                <form className={clsx(styles.wrapper)} onSubmit={(e) => handleSubmit(e)}>
-                    <LayoutLeft user={cart.user} validates={validates} />
+                <form className={clsx(styles.wrapper)} onSubmit={(e) => formSubmit(e, cart.user)}>
+                    <LayoutLeft
+                        user={cart.user}
+                        removeError={removeError}
+                        invalid={invalid}
+                        errors={errors}
+                    />
                     <LayoutRight cartItems={cart.cartItems} totalPrice={cart.totalPrice} />
                 </form>
             </div>

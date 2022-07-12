@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import Modal from '../../components/Modal';
 import Button from '../../../../components/Button';
@@ -7,8 +6,7 @@ import styles from './Form.module.css';
 import TabInfo from './TabInfo';
 import TabAttribute from './TabAttribute';
 import TabDescription from './TabDescription';
-import { submitForm } from '../../../../hook/validationForm';
-import { addNewToastMessage } from '../../../../redux/actions/toastMessage';
+import useValidateForm from '../../../../hook/useValidateForm';
 function Form({
     isLoadingSubmit,
     isShowForm,
@@ -19,48 +17,47 @@ function Form({
 }) {
     let validates = [
         {
-            inputName: 'category',
-            rules: { required: '' },
+            name: 'category',
+            rules: { isRequired: true },
         },
         {
-            inputName: 'brand',
-            rules: { required: '' },
+            name: 'brand',
+            rules: { isRequired: true },
         },
         {
-            inputName: 'name',
-            rules: { required: '', maxLength: 100 },
+            name: 'name',
+            rules: { isRequired: true, minLength: 6, maxLength: 100 },
         },
         {
-            inputName: 'qty',
-            rules: { required: '', minNumber: 0 },
+            name: 'qty',
+            rules: { isRequired: true, isInteger: true, minNumber: 1 },
         },
         {
-            inputName: 'price',
-            rules: { required: '', numberInteger: '' },
+            name: 'price',
+            rules: { isRequired: true, isInteger: true, minNumber: 1 },
         },
         {
-            inputName: 'sale',
-            rules: { minNumber: 0, maxNumber: 100 },
+            name: 'sale',
+            rules: { minNumber: 0, isInteger: true, minNumber: 0, maxNumber: 100 },
         },
         {
-            inputName: 'img',
-            rules: { required: '', fileImg: '' },
+            name: 'img',
+            rules: { isRequired: true, isFileImg: true },
         },
         {
-            inputName: 'status',
-            rules: { required: '' },
+            name: 'imgs',
+            rules: { isFileImg: true, maxFile: 10 },
         },
     ];
     if (dataForm.typeAction === 'update') {
         validates[6] = {
-            inputName: 'img',
-            rules: { fileImg: '' },
+            name: 'img',
+            rules: { isFileImg: true },
         };
     }
     const [tabActive, setTabActive] = useState(0);
     const [widthLine, setWidthLine] = useState(0);
     const buttonRef = useRef(null);
-    const dispatch = useDispatch();
     const elementTitle =
         dataForm.typeAction === 'add' ? (
             <>Thêm sản phẩm</>
@@ -77,25 +74,20 @@ function Form({
         setTabActive(0);
         handleShowForm();
     };
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if (isLoadingSubmit) {
             return;
         }
-        const elements = e.target.elements;
-        const messageError = submitForm(elements, validates);
-        if (messageError.length > 0) {
-            for (let i = 0; i < messageError.length; i++) {
-                const formGroupElement = elements[messageError[i].name].parentElement;
-                formGroupElement.classList.add(clsx(styles.invalid));
-                formGroupElement.querySelector('.message').innerText = messageError[i].message;
-            }
-            dispatch(
-                addNewToastMessage('error', 'Thất bại', 'Thông tin chưa nhập đủ hoặc chưa hợp lệ'),
-            );
+        handleSubmitForm(dataForm.typeAction);
+    };
+    const { errors, removeError, formSubmit, invalid } = useValidateForm(validates, handleSubmit);
+    const handleChange = (name, value) => {
+        if (name === 'category') {
+            handleSetDataForm({ ...dataForm, category: value, brand: '' });
         } else {
-            handleSubmitForm(dataForm.typeAction);
+            handleSetDataForm({ ...dataForm, [name]: value });
         }
+        removeError(name);
     };
     return (
         <Modal
@@ -107,7 +99,7 @@ function Form({
             style={{ maxWidth: '900px' }}
         >
             <div className={clsx(styles.wrapper)}>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => formSubmit(e, dataForm)}>
                     <div className={clsx(styles.buttonGroup)}>
                         <div className={clsx(styles.tabs)}>
                             <button
@@ -156,19 +148,20 @@ function Form({
                     <div className={clsx(styles.main, 'custom-scrollbars')}>
                         <TabInfo
                             active={tabActive === 0}
-                            validates={validates}
                             dataForm={dataForm}
-                            handleSetDataForm={handleSetDataForm}
+                            handleChange={handleChange}
+                            invalid={invalid}
+                            errors={errors}
                         />
                         <TabAttribute
                             active={tabActive === 1}
                             dataForm={dataForm}
-                            handleSetDataForm={handleSetDataForm}
+                            handleChange={handleChange}
                         />
                         <TabDescription
                             active={tabActive === 2}
                             dataForm={dataForm}
-                            handleSetDataForm={handleSetDataForm}
+                            handleChange={handleChange}
                         />
                     </div>
                 </form>

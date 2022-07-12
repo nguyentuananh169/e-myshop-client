@@ -1,4 +1,4 @@
-export const useSliceString = (string, length) => {
+const useSliceString = (string, length) => {
     const stringFormat = string.trim();
     let result = '';
     if (stringFormat.length > length) {
@@ -8,3 +8,4 @@ export const useSliceString = (string, length) => {
     }
     return result;
 };
+export default useSliceString;

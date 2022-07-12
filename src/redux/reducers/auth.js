@@ -30,7 +30,6 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 isCheckLogin: action.payload,
             };
-        case 'CHANGE_INFO_USER':
         default:
             return state;
     }

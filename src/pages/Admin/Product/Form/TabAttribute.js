@@ -2,41 +2,29 @@ import { Fragment } from 'react';
 import clsx from 'clsx';
 import styles from './Form.module.css';
 import Button from '../../../../components/Button';
-function TabAttribute({ active, dataForm, handleSetDataForm }) {
+function TabAttribute({ active, dataForm, handleChange }) {
     const handleSetAtrr = () => {
         const date = new Date();
         const id = date.getTime();
-        handleSetDataForm({
-            ...dataForm,
-            attr: [...dataForm.attr, { id: id, type: '', value: [] }],
-        });
+        handleChange('attr', [...dataForm.attr, { id: id, type: '', value: [] }]);
     };
     const handleRemoveAttr = (id) => {
         const arrayAttr = dataForm.attr.filter((item) => item.id !== id);
-        handleSetDataForm({
-            ...dataForm,
-            attr: arrayAttr,
-        });
+        handleChange('attr', arrayAttr);
     };
     const handleChangeTypeAttr = (index, value) => {
         let attrList = dataForm.attr;
         let attr = attrList[index];
         let attr2 = { ...attr, type: value };
         attrList[index] = attr2;
-        handleSetDataForm({
-            ...dataForm,
-            attr: attrList,
-        });
+        handleChange('attr', attrList);
     };
     const handleChangeValueAttr = (index, value) => {
         let attrList = dataForm.attr;
         let attr = attrList[index];
         let attr2 = { ...attr, value: value.split('|') };
         attrList[index] = attr2;
-        handleSetDataForm({
-            ...dataForm,
-            attr: attrList,
-        });
+        handleChange('attr', attrList);
     };
     return (
         <div className={clsx(styles.tabAttribute, { [styles.active]: active })}>

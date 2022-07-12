@@ -2,9 +2,8 @@ import { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import categoryProductApi from '../../../../api/categoryProductApi';
 import brandProductApi from '../../../../api/brandProductApi';
-import { invalidInput } from '../../../../hook/validationForm';
 import styles from './Form.module.css';
-function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
+function TabInfo({ active, invalid, dataForm, handleChange, errors }) {
     const [isLoadingCate, setLoadingCate] = useState(true);
     const [isLoadingBrand, setLoadingBrand] = useState(false);
     const [categoryList, setCategoryList] = useState([]);
@@ -29,36 +28,6 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
             fetchBrandProduct();
         }
     }, [dataForm.category]);
-    const handleChange = (e) => {
-        const formGroupElement = e.target.parentElement;
-        if (e.target.attributes.type.value === 'file') {
-            if (e.target.attributes.multiple) {
-                const array = [];
-                for (let i = 0; i < e.target.files.length; i++) {
-                    array.push(e.target.files[i]);
-                }
-                handleSetDataForm({ ...dataForm, [e.target.name]: array });
-            } else {
-                handleSetDataForm({ ...dataForm, [e.target.name]: e.target.files[0] });
-            }
-        } else {
-            handleSetDataForm({ ...dataForm, [e.target.name]: e.target.value });
-        }
-        formGroupElement.classList.remove(clsx(styles.invalid));
-        formGroupElement.querySelector('.message').innerText = '';
-    };
-    const handleBlur = (element) => {
-        const valide = validates.filter((item) => item.inputName === element.name);
-        let message = invalidInput(valide[0].inputName, element.value, valide[0].rules);
-        const formGroupElement = element.parentElement;
-        if (message) {
-            formGroupElement.classList.add(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = message.message;
-        } else {
-            formGroupElement.classList.remove(clsx(styles.invalid));
-            formGroupElement.querySelector('.message').innerText = '';
-        }
-    };
     return (
         <div className={clsx(styles.tabInfo, { [styles.active]: active })}>
             <div className={clsx(styles.formGroup)}>
@@ -68,23 +37,26 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     id="catePro"
                     value={dataForm.category}
                     onChange={(e) =>
-                        handleSetDataForm({
-                            ...dataForm,
-                            category: e.target.options[e.target.options.selectedIndex].value,
-                        })
+                        handleChange(
+                            'category',
+                            e.target.options[e.target.options.selectedIndex].value,
+                        )
                     }
-                    onBlur={(e) => handleBlur(e.target)}
+                    onBlur={(e) =>
+                        invalid('category', e.target.options[e.target.options.selectedIndex].value)
+                    }
                 >
                     <option value="">
                         {isLoadingCate ? '--- Đang tải dữ liệu ---' : '--- Chọn danh mục ---'}
                     </option>
-                    {categoryList.map((item) => (
-                        <option key={item.id} value={item.id}>
-                            {item.name}
-                        </option>
-                    ))}
+                    {!isLoadingCate &&
+                        categoryList.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
                 </select>
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.category}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="brandPro">Chọn thương hiệu:</label>
@@ -93,23 +65,26 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     id="brandPro"
                     value={dataForm.brand}
                     onChange={(e) =>
-                        handleSetDataForm({
-                            ...dataForm,
-                            brand: e.target.options[e.target.options.selectedIndex].value,
-                        })
+                        handleChange(
+                            'brand',
+                            e.target.options[e.target.options.selectedIndex].value,
+                        )
                     }
-                    onBlur={(e) => handleBlur(e.target)}
+                    onBlur={(e) =>
+                        invalid('brand', e.target.options[e.target.options.selectedIndex].value)
+                    }
                 >
                     <option value="">
                         {isLoadingBrand ? '--- Đang tải dữ liệu ---' : '--- Chọn thương hiệu ---'}
                     </option>
-                    {brandList.map((item) => (
-                        <option key={item.id} value={item.id}>
-                            {item.name}
-                        </option>
-                    ))}
+                    {!isLoadingBrand &&
+                        brandList.map((item) => (
+                            <option key={item.id} value={item.id}>
+                                {item.name}
+                            </option>
+                        ))}
                 </select>
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.brand}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="namePro">Tên sản phẩm:</label>
@@ -119,10 +94,10 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     type="text"
                     placeholder="Nhập tên sản phẩm"
                     value={dataForm.name}
-                    onChange={handleChange}
-                    onBlur={(e) => handleBlur(e.target)}
+                    onChange={(e) => handleChange('name', e.target.value)}
+                    onBlur={(e) => invalid('name', e.target.value)}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.name}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="qtyPro">Số lượng:</label>
@@ -132,10 +107,10 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     type="text"
                     placeholder="Nhập số lượng sản phẩm"
                     value={dataForm.qty}
-                    onChange={handleChange}
-                    onBlur={(e) => handleBlur(e.target)}
+                    onChange={(e) => handleChange('qty', e.target.value)}
+                    onBlur={(e) => invalid('qty', e.target.value)}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.qty}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="pricePro">Giá sản phẩm:</label>
@@ -145,10 +120,10 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     type="text"
                     placeholder="Nhập giá sản phẩm"
                     value={dataForm.price}
-                    onChange={handleChange}
-                    onBlur={(e) => handleBlur(e.target)}
+                    onChange={(e) => handleChange('price', e.target.value)}
+                    onBlur={(e) => invalid('price', e.target.value)}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.price}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="salePro">Giảm giá (%):</label>
@@ -158,10 +133,10 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     type="text"
                     placeholder="Nhập % giảm giá (0 - 100)"
                     value={dataForm.sale}
-                    onChange={handleChange}
-                    onBlur={(e) => handleBlur(e.target)}
+                    onChange={(e) => handleChange('sale', e.target.value)}
+                    onBlur={(e) => invalid('sale', e.target.value)}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.sale}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="imgPro">Hình ảnh đại diện:</label>
@@ -169,18 +144,25 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     name="img"
                     id="imgPro"
                     type="file"
-                    onChange={handleChange}
-                    onBlur={(e) => handleBlur(e.target)}
+                    onChange={(e) => handleChange('img', e.target.files)}
+                    onBlur={(e) => invalid('img', e.target.files)}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.img}</span>
                 {dataForm.typeAction === 'update' && (
                     <i className={clsx(styles.note)}>Để trống hình ảnh nếu không muốn xửa</i>
                 )}
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="imgPro2">Hình ảnh chi tiết:</label>
-                <input name="imgs" id="imgPro2" type="file" multiple onChange={handleChange} />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <input
+                    name="imgs"
+                    id="imgPro2"
+                    type="file"
+                    multiple
+                    onChange={(e) => handleChange('imgs', e.target.files)}
+                    onBlur={(e) => invalid('imgs', e.target.files)}
+                />
+                <span className={clsx(styles.errorMessage)}>{errors.imgs}</span>
                 {dataForm.typeAction === 'update' && (
                     <i className={clsx(styles.note)}>Để trống hình ảnh nếu không muốn xửa</i>
                 )}
@@ -192,18 +174,20 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     id="statusPro"
                     value={dataForm.status}
                     onChange={(e) =>
-                        handleSetDataForm({
-                            ...dataForm,
-                            status: e.target.options[e.target.options.selectedIndex].value,
-                        })
+                        handleChange(
+                            'status',
+                            e.target.options[e.target.options.selectedIndex].value,
+                        )
                     }
-                    onBlur={(e) => handleBlur(e.target)}
+                    onBlur={(e) =>
+                        invalid('status', e.target.options[e.target.options.selectedIndex].value)
+                    }
                 >
                     <option value="0">Không chọn</option>
                     <option value="1">Mới nhất</option>
                     <option value="2">Nổi bật</option>
                 </select>
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.status}</span>
             </div>
             <div className={clsx(styles.formGroup)}>
                 <label htmlFor="promotionPro">Khuyến mãi:</label>
@@ -212,14 +196,9 @@ function TabInfo({ active, validates, dataForm, handleSetDataForm }) {
                     id="promotionPro"
                     placeholder="Nhập nội dung khuyến mãi"
                     value={dataForm.promotion.join('|')}
-                    onChange={(e) =>
-                        handleSetDataForm({
-                            ...dataForm,
-                            promotion: e.target.value.split('|'),
-                        })
-                    }
+                    onChange={(e) => handleChange('promotion', e.target.value.split('|'))}
                 />
-                <span className={clsx(styles.errorMessage, 'message')}></span>
+                <span className={clsx(styles.errorMessage)}></span>
                 <i className={clsx(styles.note)}>
                     Nếu có nhiều khuyến mãi, hãy cách nhau bằng dấu " | "
                 </i>

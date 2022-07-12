@@ -8,9 +8,9 @@ const DropdownMenuBlog = ({ active, mobile }) => {
     const elementRef = useRef(null);
     useEffect(() => {
         const fetchCategory = async () => {
-            const response = await categoryNewsApi.getAll();
-            if (response.dataCate && response.dataCate.length > 0) {
-                setCatgoryList(response.dataCate);
+            const response = await categoryNewsApi.getByStatus();
+            if (response && response.length > 0) {
+                setCatgoryList(response);
             }
         };
         fetchCategory();
@@ -24,9 +24,7 @@ const DropdownMenuBlog = ({ active, mobile }) => {
             style={
                 mobile
                     ? {
-                          height: active
-                              ? `${elementRef.current.scrollHeight}px`
-                              : 0,
+                          height: active ? `${elementRef.current.scrollHeight}px` : 0,
                       }
                     : {}
             }
@@ -34,9 +32,7 @@ const DropdownMenuBlog = ({ active, mobile }) => {
             <ul>
                 {catgoryList.map((item) => (
                     <li key={item.id}>
-                        <Link to={`/tin-tuc/danh-muc/${item.id}`}>
-                            {item.name}
-                        </Link>
+                        <Link to={`/tin-tuc/danh-muc/${item.id}`}>{item.name}</Link>
                     </li>
                 ))}
             </ul>
