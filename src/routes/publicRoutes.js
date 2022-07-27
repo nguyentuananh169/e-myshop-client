@@ -37,6 +37,6 @@ const publicRoutes = [
     { path: '/thu-tuc-thanh-toan', component: Checkout, layout: DefaultLayout },
     { path: '/gio-hang/gui-di/:id/:totalPrice', component: CartSubmit, layout: DefaultLayout },
     { path: '/lien-he', component: Contact, layout: DefaultLayout },
-    { path: 'admin/dang-nhap', component: LoginAdmin, layout: null },
+    { path: '/admin/dang-nhap', component: LoginAdmin, layout: null },
 ];
 export default publicRoutes;

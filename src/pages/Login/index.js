@@ -42,7 +42,6 @@ function Login() {
         }
         dispatch(
             authLogin({
-                access_token: response[0].access_token,
                 user: response[0].user,
                 isAuthentication: response[0].auth,
                 isAdmin: response[0].admin,
@@ -50,6 +49,7 @@ function Login() {
             }),
         );
         localStorage.setItem('access_token', JSON.stringify(response[0].access_token));
+        localStorage.setItem('refresh_token', JSON.stringify(response[0].refresh_token));
         dispatch(addNewToastMessage('success', 'Đăng nhập thành công', 'Chào mừng bạn'));
         navigate('/', { replace: true });
     };

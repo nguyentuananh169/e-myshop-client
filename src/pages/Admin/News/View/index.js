@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import styles from './View.module.css';
 import Modal from '../../components/Modal';
 import NewsContent from '../../../../components/NewsContent';
-import { useEffect } from 'react';
 function View({ dataView, isShowForm, handleShowForm }) {
     const elementTitle = (
         <>

@@ -1,4 +1,3 @@
-import { Link, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Menu.module.css';
 import MenuItem from './MenuItem';

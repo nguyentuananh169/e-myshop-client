@@ -6,7 +6,6 @@ import MainInfo from './components/MainInfo';
 import Description from './components/Description';
 import Related from './components/Related';
 import CommentsRating from './components/CommentsRating';
-import LoadingBox from '../../components/LoadingBox';
 import LoadingMainInfo from './components/MainInfo/Loading';
 function Product() {
     let { id } = useParams();
@@ -16,8 +15,8 @@ function Product() {
         const fetchProduct = async () => {
             setLoading(true);
             const response = await productApi.getById(id);
-            setDataProduct(response.dataProduct[0]);
             setLoading(false);
+            setDataProduct(response.dataProduct[0]);
         };
         fetchProduct();
     }, [id]);

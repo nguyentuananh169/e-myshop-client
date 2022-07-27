@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
 import newsApi from '../../../api/newsApi';
 import Path from '../../../components/Path';
 import LoadingBox from '../../../components/LoadingBox';
 import styles from './NewsDetail.module.css';
-import noAvt from '../../../assets/img/icon/no-avatar.jpg';
 import NewsRealted from './NewsRelated';
 import NewsContent from '../../../components/NewsContent';
 

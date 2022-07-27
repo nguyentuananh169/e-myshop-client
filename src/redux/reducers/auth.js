@@ -1,5 +1,4 @@
 const initialState = {
-    access_token: null,
     user: null,
     isAuthentication: false,
     isAdmin: false,
@@ -11,7 +10,6 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload.user,
-                access_token: action.payload.access_token,
                 isAuthentication: action.payload.isAuthentication,
                 isAdmin: action.payload.isAdmin,
             };
@@ -19,8 +17,7 @@ const authReducer = (state = initialState, action) => {
             return { ...state, user: action.payload };
         case 'LOG_OUT':
             return {
-                ...state,
-                access_token: null,
+                isCheckLogin: false,
                 user: null,
                 isAuthentication: false,
                 isAdmin: false,

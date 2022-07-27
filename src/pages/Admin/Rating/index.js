@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import ratingApi from '../../../api/ratingApi';
 import Path from '../../../components/Path';

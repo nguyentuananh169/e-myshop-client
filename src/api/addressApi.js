@@ -1,8 +1,8 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 
 const addressApi = {
     getCity: () => {
-        const url = "/address/show-city.php";
+        const url = '/address/show-city.php';
         return axiosClient.get(url);
     },
     getDistrictByCityId: (cityId) => {
@@ -13,5 +13,5 @@ const addressApi = {
         const url = `/address/show-commune.php?_district_id=${districtId}`;
         return axiosClient.get(url);
     },
-}
+};
 export default addressApi;

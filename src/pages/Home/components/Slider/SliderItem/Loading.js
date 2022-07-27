@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import SkeletonLoading from '../../../../../components/SkeletonLoading';
 import styles from './SliderItem.module.css';

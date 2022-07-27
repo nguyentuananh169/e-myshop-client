@@ -1,4 +1,4 @@
-import { Link, useLocation, NavLink } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './MenuItem.module.css';
 import { useState } from 'react';

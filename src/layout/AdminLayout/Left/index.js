@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { useState } from 'react';
 import Header from './Header';
 import styles from './Left.module.css';
 import Menu from './Menu';

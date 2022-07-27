@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
 import clsx from 'clsx';
 import Path from '../../components/Path';
 import iconCheck from '../../assets/img/icon/check.png';
 import orderOk from '../../assets/img/icon/order-ok.png';
-import noData from '../../assets/img/background/no-data.png';
 import styles from './CartSubmit.module.css';
 import Button from '../../components/Button';
 function CartSubmit() {

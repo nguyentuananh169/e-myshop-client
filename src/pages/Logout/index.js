@@ -10,6 +10,7 @@ function Logout() {
     useEffect(() => {
         const handleLogOut = () => {
             localStorage.removeItem('access_token');
+            localStorage.removeItem('refresh_token');
             dispatch(resertCart());
             dispatch(logOut());
             dispatch(addNewToastMessage('success', 'Thành công', 'Bạn đã đăng xuất thành công'));

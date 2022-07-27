@@ -1,5 +1,4 @@
 import { useParams } from 'react-router';
-import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import categoryProductApi from '../../api/categoryProductApi';
 import Path from '../../components/Path';

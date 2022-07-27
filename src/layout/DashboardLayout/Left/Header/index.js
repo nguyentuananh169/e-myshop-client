@@ -19,7 +19,7 @@ function Header() {
                     'warning',
                     'Chưa được xử lý',
                     'Lần thay đổi trước chưa có kết quả. Vui lòng đợi',
-                    7000,
+                    5000,
                 ),
             );
         }

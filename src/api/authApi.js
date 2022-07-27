@@ -13,5 +13,9 @@ const authApi = {
         const url = '/login/check-login.php';
         return axiosClient.post(url);
     },
+    refreshToken: () => {
+        const url = '/refresh_token.php';
+        return axiosClient.post(url);
+    },
 };
 export default authApi;

@@ -1,5 +1,5 @@
 import { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ScrollTop from './components/ScrollTop';
 import ToastMessage from './components/ToastMessage';
@@ -10,15 +10,18 @@ import LoadingCheckLogin from './components/LoadingCheckLogin';
 
 function App() {
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(checkAuthLogin());
-    }, [dispatch]);
     const isCheckLogin = useSelector((state) => state.auth.isCheckLogin);
-    if (isCheckLogin) {
+    const token = localStorage.getItem('access_token');
+    useEffect(() => {
+        if (isCheckLogin && token) {
+            dispatch(checkAuthLogin());
+        }
+    }, [dispatch]);
+    if (isCheckLogin && token) {
         return <LoadingCheckLogin />;
     }
     return (
-        <Router>
+        <>
             <ScrollTop />
             <ToastMessage />
             <Routes>
@@ -83,7 +86,7 @@ function App() {
                     );
                 })}
             </Routes>
-        </Router>
+        </>
     );
 }
 

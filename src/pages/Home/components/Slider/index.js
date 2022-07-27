@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SliderItem from './SliderItem';
 import clsx from 'clsx';
 import Loading from './SliderItem/Loading';
