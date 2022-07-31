@@ -8,21 +8,19 @@
     align-items: center;
     justify-content: center;
 }
-.notfound button.goBack {
+.notfound a.toHomePage {
     padding: 7px 9px;
-    outline: none;
     color: #fff;
     border: 2px solid #030005;
     background-color: #030005;
     transition: all 0.2s linear;
-    cursor: pointer;
     font-size: 14px;
 }
-.notfound button.goBack:hover {
+.notfound a.toHomePage:hover {
     color: #8400ff;
     border: 2px solid #8400ff;
 }
-.notfound button.goBack i {
+.notfound a.toHomePage i {
     margin-right: 5px;
 }
 .text {
@@ -45,7 +43,7 @@
     font-weight: 700;
     text-shadow: 0 2px 0 #8400ff;
 }
-.notfound a {
+.notfound a.toLoginPage {
     display: inline-block;
     padding: 7px 9px;
     font-size: 20px;
@@ -58,7 +56,7 @@
     background-color: #030005;
     transition: all 0.2s linear;
 }
-.notfound a:hover {
+.notfound a.toLoginPage:hover {
     color: #8400ff;
     border: 2px solid #8400ff;
 }

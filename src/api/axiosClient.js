@@ -45,7 +45,7 @@ axiosClient.interceptors.response.use(
         ) {
             localStorage.removeItem('access_token');
             localStorage.removeItem('refresh_token');
-            window.location.href = '/dang-nhap';
+            window.location.href = '/error403';
         }
         throw error;
     },
