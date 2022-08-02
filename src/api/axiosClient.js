@@ -35,7 +35,6 @@ axiosClient.interceptors.response.use(
                 : authApi.refreshToken();
             const res = await refreshTokenRequest;
             localStorage.setItem('access_token', JSON.stringify(res.access_token));
-            error.config.headers.Authorization = 'Bearer ' + res.access_token;
             refreshTokenRequest = null;
             return axiosClient(error.config);
         }
