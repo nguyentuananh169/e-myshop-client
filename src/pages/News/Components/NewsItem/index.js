@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import useTime from '../../../../hook/useTime';
 import useSliceString from '../../../../hook/useSliceString';
 import Button from '../../../../components/Button';
 import styles from './NewsItem.module.css';
@@ -34,7 +35,7 @@ function NewsItem({ item }) {
                         <span className={clsx(styles.name)}>{item.user_name}</span>
                         <span className={clsx(styles.time)}>
                             <i className="fa fa-clock-o"></i>
-                            {item.news_created_at}
+                            {useTime(item.news_created_at)}
                         </span>
                     </div>
                     <div className={clsx(styles.category)}>

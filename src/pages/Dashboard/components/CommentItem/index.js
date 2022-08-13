@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import useTime from '../../../../hook/useTime';
 import styles from './CommentItem.module.css';
 import noAvatr from '../../../../assets/img/icon/no-avatar.jpg';
 import { useSelector } from 'react-redux';
@@ -32,7 +33,7 @@ function CommentItem({ item, type }) {
                     </div>
                 )}
                 <div className={clsx(styles.time)}>
-                    <i>{item.cmt_created_at || item.r_created_at}</i>
+                    <i>{useTime(item.cmt_created_at || item.r_created_at)}</i>
                 </div>
                 <div className={clsx(styles.content)}>
                     <span>{item.cmt_content || item.r_content}</span>

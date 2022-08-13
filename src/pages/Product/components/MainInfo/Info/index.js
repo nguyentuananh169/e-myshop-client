@@ -176,7 +176,7 @@ function Info({ id, name, UrlImg, price, cost, sale, promotion, attr, amount }) 
                             <i className="fa fa-check"></i>
                             Còn hàng
                         </span>
-                        <i>( {amount} số lượng có sẵn )</i>
+                        <i className={clsx(styles.amount)}>( {amount} số lượng có sẵn )</i>
                     </>
                 ) : (
                     <span className={clsx(styles.hetHang)}>

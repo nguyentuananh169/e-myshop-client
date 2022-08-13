@@ -194,7 +194,7 @@ function Product() {
             brand: data.brand_pro_id,
             name: data.pro_name,
             qty: data.pro_qty,
-            price: data.pro_price,
+            price: data.pro_cost,
             sale: data.pro_sale,
             img: '',
             imgs: [],

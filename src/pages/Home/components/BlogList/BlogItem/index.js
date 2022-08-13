@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import useTime from '../../../../../hook/useTime';
 import styles from './BlogItem.module.css';
 import noAvt from '../../../../../assets/img/icon/no-avatar.jpg';
 function BlogItem(props) {
@@ -36,7 +37,7 @@ function BlogItem(props) {
                 </div>
                 <div className={clsx(styles.time)}>
                     <i className="fa fa-clock-o"></i>
-                    <span>{props.item.news_created_at}</span>
+                    <span>{useTime(props.item.news_created_at)}</span>
                 </div>
             </div>
             <div className={clsx(styles.blogItemLine)}></div>

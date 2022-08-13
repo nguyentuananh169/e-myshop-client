@@ -29,7 +29,7 @@
 .wrapper table td img {
     width: 80px;
     height: 80px;
-    object-fit: cover;
+    object-fit: contain;
 }
 .wrapper table td[data-type='action'] {
     white-space: nowrap;

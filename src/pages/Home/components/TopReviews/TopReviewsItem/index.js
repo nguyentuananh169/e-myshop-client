@@ -1,4 +1,6 @@
 import clsx from 'clsx';
+import useTime from '../../../../../hook/useTime';
+import useSliceString from '../../../../../hook/useSliceString';
 import styles from './TopReviewsItem.module.css';
 import noAvt from '../../../../../assets/img/icon/no-avatar.jpg';
 function TopReviewsItem(props) {
@@ -61,10 +63,10 @@ function TopReviewsItem(props) {
                     ></i>
                 </div>
                 <div className={clsx(styles.content)}>
-                    <span>{props.item.r_content}</span>
+                    <span>{useSliceString(props.item.r_content, 60)}</span>
                 </div>
                 <div className={clsx(styles.time)}>
-                    <span>{props.item.r_created_at}</span>
+                    <span>{useTime(props.item.r_created_at)}</span>
                 </div>
             </div>
         </div>

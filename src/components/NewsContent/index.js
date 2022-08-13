@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import NumberFormat from 'react-number-format';
+import useTime from '../../hook/useTime';
 import styles from './NewsContent.module.css';
 import noAvt from '../../assets/img/icon/no-avatar.jpg';
 function NewsContent({ item }) {
@@ -19,7 +20,7 @@ function NewsContent({ item }) {
                 <div className={clsx(styles.txt2)}>
                     <span className={clsx(styles.time)}>
                         <i className="fa fa-clock-o"></i>
-                        {item.news_created_at}
+                        {useTime(item.news_created_at)}
                     </span>
                     <span className={clsx(styles.views)}>
                         <i className="fa fa-eye"></i>

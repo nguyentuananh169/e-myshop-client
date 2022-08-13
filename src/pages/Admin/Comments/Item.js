@@ -12,6 +12,7 @@ function Item({ stt, item, handleSetDataComments }) {
                 <div className={clsx(styles.infoCmt)}>
                     <div className={clsx(styles.avt)}>
                         <img
+                            style={{ objectFit: 'cover' }}
                             src={item.user_avatar ? `${item.baseURLImg}${item.user_avatar}` : noAvt}
                             alt=""
                         />

@@ -130,11 +130,12 @@
     font-size: 14px;
     font-weight: 600;
 }
-.productCheckQty span i.fa {
+.productCheckQty span.conHang i,
+.productCheckQty span.hetHang i {
     margin-right: 5px;
     font-size: 16px;
 }
-.productCheckQty i:not(.fa) {
+.productCheckQty .amount {
     margin-left: 5px;
     font-size: 13px;
     font-weight: 500;

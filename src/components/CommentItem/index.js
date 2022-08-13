@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
+import useTime from '../../hook/useTime';
 import Button from '../Button';
 import styles from './CommentItem.module.css';
 import noAvatar from '../../assets/img/icon/no-avatar.jpg';
 import Form from '../../pages/Product/components/CommentsRating/components/Form';
-import { useSelector } from 'react-redux';
+import ItemLv2 from './ItemLv2';
 function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRating }) {
     const [isShowForm, setShowForm] = useState(false);
     let levelElement1;
@@ -50,7 +52,7 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
                     </div>
                 )}
                 <div className={clsx(styles.time)}>
-                    <span>{data.cmt_created_at || data.r_created_at}</span>
+                    <span>{useTime(data.cmt_created_at || data.r_created_at)}</span>
                 </div>
                 <div className={clsx(styles.content)}>
                     <span>{data.cmt_content || data.r_content}</span>
@@ -88,41 +90,7 @@ function CommentItem({ data, isLoading, fetchComments, type = 'comment', fetchRa
                         handleShowFormLv2={handleShowFormLv2}
                     />
                 ) : (
-                    data.reply.map((item) => (
-                        <div
-                            key={item.cmt_id || item.r_id}
-                            className={clsx(styles.container, styles.lv2)}
-                        >
-                            <div className={clsx(styles.avatar)}>
-                                <img
-                                    src={
-                                        item.user_avatar
-                                            ? `${item.baseURLImg}${item.user_avatar}`
-                                            : noAvatar
-                                    }
-                                    alt=""
-                                />
-                            </div>
-                            <div className={clsx(styles.info)}>
-                                <div className={clsx(styles.name)}>
-                                    <strong>{item.user_name}</strong>
-                                    {item.user_level > 1 ? (
-                                        <span>
-                                            <i className="fa fa-check-circle"></i>
-                                            {item.user_level === '2' && 'Kiểm duyệt viên'}
-                                            {item.user_level === '3' && 'Quản trị viên'}
-                                        </span>
-                                    ) : null}
-                                </div>
-                                <div className={clsx(styles.time)}>
-                                    <span>{item.cmt_created_at || item.r_created_at}</span>
-                                </div>
-                                <div className={clsx(styles.content)}>
-                                    <span>{item.cmt_content || item.r_content}</span>
-                                </div>
-                            </div>
-                        </div>
-                    ))
+                    data.reply.map((item) => <ItemLv2 key={item.cmt_id || item.r_id} item={item} />)
                 )}
             </div>
         </div>

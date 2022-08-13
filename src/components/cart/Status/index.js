@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import useTime from '../../../hook/useTime';
 import styles from './Status.module.css';
 function Status({ user, adminPage }) {
     return (
@@ -19,14 +20,14 @@ function Status({ user, adminPage }) {
                             <td>Gửi yêu cầu đặt hàng</td>
                             <td>{user.user_name}</td>
                             <td>{user.user_note}</td>
-                            <td>{user.created_at}</td>
+                            <td>{useTime(user.created_at)}</td>
                         </tr>
                         <tr className="border">
                             <td>2</td>
                             <td>{user.status_id > 1 ? user.status_name : 'Chưa tiếp nhận'}</td>
                             <td>QTV MyShop</td>
                             <td>{user.order_admin_note}</td>
-                            <td>{user.updated_at}</td>
+                            <td>{useTime(user.updated_at)}</td>
                         </tr>
                     </tbody>
                 </table>
