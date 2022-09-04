@@ -66,8 +66,8 @@ const ProductList = ({ categoryId, categoryName, search = false, pagination = fa
                     handleChangeSort={handleChangeSort}
                 />
             )}
+            {!isLoading && !productList.length && <NoData text="Chưa có sản phẩm nào" />}
             <div className={clsx(styles.listProduct)}>
-                {!isLoading && !productList.length && <NoData />}
                 {isLoading ? (
                     <Loading count={4} />
                 ) : (

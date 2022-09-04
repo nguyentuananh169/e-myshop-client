@@ -46,13 +46,13 @@ function Form({
             params.append('_star', star);
             response = await ratingApi.add(params);
         }
+        setLoadingAdd(false);
         if (response[0].error === 1) {
             return dispatch(addNewToastMessage('error', 'Thất bại', response[0].message));
         }
         dispatch(addNewToastMessage('success', 'Thành công', response[0].message));
         setContent('');
         setStar(0);
-        setLoadingAdd(false);
         if (fetchRating) {
             fetchRating();
         }
@@ -72,7 +72,7 @@ function Form({
             ></textarea>
             {type === 'rating' && !handleShowFormLv2 && (
                 <div className={clsx(styles.ratingStar)}>
-                    <strong>Đánh giá của bạn : </strong>
+                    <strong>Đánh giá của bạn: </strong>
                     {starArray.map((item) => (
                         <i
                             key={item}

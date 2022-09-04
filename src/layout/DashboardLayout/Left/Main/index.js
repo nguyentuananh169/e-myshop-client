@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import clsx from 'clsx';
 import styles from './Main.module.css';
 function Main({ handleSetShowMenu }) {
@@ -11,73 +11,78 @@ function Main({ handleSetShowMenu }) {
         <div className={clsx(styles.wrapper, 'custom-scrollbars')}>
             <ul>
                 <li className={clsx(styles.home)}>
-                    <Link to="/">
+                    <NavLink
+                        end
+                        to="/"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-home"></i>
                         Trang chủ
-                    </Link>
+                    </NavLink>
                 </li>
-                <li className={clsx({ [styles.active]: location.pathname === '/bang-dieu-khien' })}>
-                    <Link to="/bang-dieu-khien">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien"
+                        end
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-tachometer"></i>
                         Bảng điều khiển
-                    </Link>
+                    </NavLink>
                 </li>
-                <li
-                    className={clsx({
-                        [styles.active]: location.pathname === '/bang-dieu-khien/thong-tin',
-                    })}
-                >
-                    <Link to="/bang-dieu-khien/thong-tin">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien/thong-tin"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-user-circle-o"></i>
                         Thông tin tài khoản
-                    </Link>
+                    </NavLink>
                 </li>
-                <li
-                    className={clsx({
-                        [styles.active]: location.pathname === '/bang-dieu-khien/don-hang',
-                    })}
-                >
-                    <Link to="/bang-dieu-khien/don-hang">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien/don-hang"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-shopping-basket"></i>
                         Đơn hàng của bạn
-                    </Link>
+                    </NavLink>
                 </li>
-                <li
-                    className={clsx({
-                        [styles.active]:
-                            location.pathname === '/bang-dieu-khien/san-pham-yeu-thich',
-                    })}
-                >
-                    <Link to="/bang-dieu-khien/san-pham-yeu-thich">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien/san-pham-yeu-thich"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-heart-o"></i>
                         Sản phẩm yêu thích
-                    </Link>
+                    </NavLink>
                 </li>
-                <li
-                    className={clsx({
-                        [styles.active]: location.pathname === '/bang-dieu-khien/quan-ly-binh-luan',
-                    })}
-                >
-                    <Link to="/bang-dieu-khien/quan-ly-binh-luan">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien/quan-ly-binh-luan"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-newspaper-o"></i>
                         Quản lý bình luận
-                    </Link>
+                    </NavLink>
                 </li>
-                <li
-                    className={clsx({
-                        [styles.active]: location.pathname === '/bang-dieu-khien/quan-ly-danh-gia',
-                    })}
-                >
-                    <Link to="/bang-dieu-khien/quan-ly-danh-gia">
+                <li>
+                    <NavLink
+                        to="/bang-dieu-khien/quan-ly-danh-gia"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-pencil-square-o"></i>
                         Quản lý đánh giá
-                    </Link>
+                    </NavLink>
                 </li>
-                <li className={clsx({ [styles.active]: location.pathname === '/dang-xuat' })}>
-                    <Link to="/dang-xuat">
+                <li>
+                    <NavLink
+                        to="/dang-xuat"
+                        className={(nav) => clsx({ [styles.active]: nav.isActive })}
+                    >
                         <i className="fa fa-sign-out"></i>
                         Đăng xuất
-                    </Link>
+                    </NavLink>
                 </li>
             </ul>
         </div>

@@ -198,7 +198,7 @@ function TabInfo({ active, invalid, dataForm, handleChange, errors }) {
                     value={dataForm.promotion.join('|')}
                     onChange={(e) => handleChange('promotion', e.target.value.split('|'))}
                 />
-                <span className={clsx(styles.errorMessage)}></span>
+                <span className={clsx(styles.errorMessage)}>{errors.promotion}</span>
                 <i className={clsx(styles.note)}>
                     Nếu có nhiều khuyến mãi, hãy cách nhau bằng dấu " | "
                 </i>

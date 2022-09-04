@@ -21,13 +21,14 @@
     color: #6e6e6e;
     padding: 15px 10px;
     font-size: 16px;
+    position: relative;
 }
-.wrapper ul li.active a,
-.wrapper ul li:hover a {
+.wrapper ul li a.active,
+.wrapper ul li a:hover {
     color: #000;
 }
-.wrapper ul li.active ::after,
-.wrapper ul li:hover::after {
+.wrapper ul li a.active ::after,
+.wrapper ul li a:hover::after {
     position: absolute;
     content: '';
     width: 5px;

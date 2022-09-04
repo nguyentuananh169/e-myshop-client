@@ -40,6 +40,7 @@ function MenuItem({ item, collapse }) {
                                 className={(nav) =>
                                     clsx(styles.btn, { [styles.active]: nav.isActive })
                                 }
+                                end
                             >
                                 <i className={item.icon}></i>
                                 <span>{item.title}</span>
@@ -60,6 +61,7 @@ function MenuItem({ item, collapse }) {
                     >
                         <NavLink
                             to={item.path}
+                            end
                             className={(nav) => clsx(styles.btn, { [styles.active]: nav.isActive })}
                         >
                             <i className={item.icon}></i>
